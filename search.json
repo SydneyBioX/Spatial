@@ -7,9 +7,37 @@
     "text": "About this site"
   },
   {
+    "objectID": "datasets/IMC_SCC.html",
+    "href": "datasets/IMC_SCC.html",
+    "title": "IMC squamous cell carcinoma",
+    "section": "",
+    "text": "library(spicyR)\nlibrary(lisaClust)\nlibrary(Statial)"
+  },
+  {
+    "objectID": "datasets/IMC_SCC.html#test-links",
+    "href": "datasets/IMC_SCC.html#test-links",
+    "title": "IMC squamous cell carcinoma",
+    "section": "Test links",
+    "text": "Test links\nI wonder if spicy() links to the documentation. Or lisaClust(). Or Kontextual()."
+  },
+  {
+    "objectID": "datasets/IMC_SCC.html#quarto",
+    "href": "datasets/IMC_SCC.html#quarto",
+    "title": "IMC squamous cell carcinoma",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "datasets/IMC_SCC.html#running-code",
+    "href": "datasets/IMC_SCC.html#running-code",
+    "title": "IMC squamous cell carcinoma",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Spicy.examples",
+    "title": "Examples of spatial analysis of in situ cytometry data",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   }
