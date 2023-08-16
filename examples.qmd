@@ -1,0 +1,27 @@
+---
+title: "Spatial analysis applied to different technologies"
+format:
+  html:
+    code-link: true
+editor: visual
+---
+
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Imaging Mass Cytometry
+
+
+### [Squamous cell carinoma dataset](datasets/IMC_SCC.qmd)
+
+## MIBITOF
+
+MIBITOF allows bunch of markers...
+
+
+## Phenocycler
+
+
+## CosMx
+
+

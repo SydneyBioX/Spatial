@@ -8,9 +8,10 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - text: Data examples
-        menu:
-          - datasets/IMC_SCC.qmd
+      - href: questions.qmd
+        text: "Analytical questions"
+      - href: examples.qmd
+        text: Examples
         
 format:
   html:
