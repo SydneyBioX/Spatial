@@ -11,8 +11,52 @@ toc-depth: 1
 *Highly multiplexed cellular and subcellular imaging assays:* Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as **PhenoCycler, IMC, CosMx, Xenium, and MERFISH** (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in [scdney](https://sydneybiox.github.io/scdney/) can be used to provide new insights into complex biological systems and diseases.
 
 
+## Our packages
 
+```{=html}
+<link rel="stylesheet" href="css/hexagons.css">
+<ul id="hexGrid">
 
-
-
-
+      <li class="hex">
+        <div class="hexIn">
+          <a class="hexLink" href="#">
+            <img src="stickers/SimpleSeg_Hex_standard.png" alt="" />
+            <h1>simpleSeg</h1>
+            <p>Cell segmentation</p>
+          </a>
+        </div>
+      </li>
+      
+      
+      <li class="hex">
+        <div class="hexIn">
+          <a class="hexLink" href="#">
+            <img src="stickers/fuseSOM_ai_standard.png" alt="" />
+            <h1>FuseSOM</h1>
+            <p>Cell type clustering</p>
+          </a>
+        </div>
+      </li>
+      
+      
+      <li class="hex">
+        <div class="hexIn">
+          <a class="hexLink" href="#">
+            <img src="stickers/spicyR_standard.png" alt="" />
+            <h1>spicyR</h1>
+            <p>Spatial inference</p>
+          </a>
+        </div>
+      </li>
+      <li class="hex">
+        <div class="hexIn">
+          <a class="hexLink" href="#">
+            <img src="stickers/statial.png" alt="" />
+            <h1>Statial</h1>
+            <p>Spatial changes in cell state</p>
+          </a>
+        </div>
+      </li>
+    </ul>
+</body>
+```
