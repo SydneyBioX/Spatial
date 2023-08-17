@@ -1,1 +1,1 @@
-Sitemap: https://github.com/SydneyBioX/spicy.examples/sitemap.xml
+Sitemap: https://github.com/SydneyBioX/Spatial/sitemap.xml

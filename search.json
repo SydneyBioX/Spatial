@@ -1,5 +1,61 @@
 [
   {
+    "objectID": "questions.html",
+    "href": "questions.html",
+    "title": "Analytical questions",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "questions.html#quarto",
+    "href": "questions.html#quarto",
+    "title": "Analytical questions",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "questions.html#running-code",
+    "href": "questions.html#running-code",
+    "title": "Analytical questions",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "examples.html",
+    "href": "examples.html",
+    "title": "Spatial analysis applied to different technologies",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "examples.html#imaging-mass-cytometry",
+    "href": "examples.html#imaging-mass-cytometry",
+    "title": "Spatial analysis applied to different technologies",
+    "section": "Imaging Mass Cytometry",
+    "text": "Imaging Mass Cytometry\n\nSquamous cell carinoma dataset"
+  },
+  {
+    "objectID": "examples.html#mibitof",
+    "href": "examples.html#mibitof",
+    "title": "Spatial analysis applied to different technologies",
+    "section": "MIBITOF",
+    "text": "MIBITOF\nMIBITOF allows bunch of markers…"
+  },
+  {
+    "objectID": "examples.html#phenocycler",
+    "href": "examples.html#phenocycler",
+    "title": "Spatial analysis applied to different technologies",
+    "section": "Phenocycler",
+    "text": "Phenocycler"
+  },
+  {
+    "objectID": "examples.html#cosmx",
+    "href": "examples.html#cosmx",
+    "title": "Spatial analysis applied to different technologies",
+    "section": "CosMx",
+    "text": "CosMx"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -37,8 +93,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Examples of spatial analysis of in situ cytometry data",
+    "title": "Spatial analysis of high dimensional in situ imaging technologies",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Spatial analysis of high dimensional in situ imaging technologies",
+    "section": "",
+    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
   }
 ]
