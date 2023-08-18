@@ -109,13 +109,20 @@
     "href": "index.html#our-packages",
     "title": "Spatial analysis of high dimensional in situ imaging technologies",
     "section": "Our packages",
-    "text": "Our packages"
+    "text": "Our packages\n\n\n\n\n      \n        \n          \n            \n            MoleculeExperiment\n            Storage class for molecule data\n          \n        \n      \n\n      \n        \n          \n            \n            simpleSeg\n            Cell segmentation\n          \n        \n      \n      \n      \n            \n        \n          \n            \n            scMerge\n            Normalisation\n          \n        \n      \n      \n      \n      \n        \n          \n            \n            FuseSOM\n            Cell type clustering\n          \n        \n      \n      \n      \n      \n        \n          \n            \n            treekoR\n            Cell type hierarchy\n          \n        \n      \n      \n      \n      \n        \n          \n            \n            scFeatures\n            Extract spatial features from data.\n          \n        \n      \n      \n            \n        \n          \n            \n            scHOT\n            Higher order associations\n          \n        \n      \n      \n      \n      \n        \n          \n            \n            spicyR\n            Spatial inference\n          \n        \n      \n      \n      \n      \n        \n          \n            \n            Statial\n            Spatial changes in cell state\n          \n        \n      \n      \n      \n        \n          \n            \n            lisaClust\n            Microenvironment identification\n          \n        \n      \n      \n       \n        \n          \n            \n            ClassifyR\n            Classification of samples"
   },
   {
-    "objectID": "index.html#testing",
-    "href": "index.html#testing",
+    "objectID": "index.html#new-header",
+    "href": "index.html#new-header",
     "title": "Spatial analysis of high dimensional in situ imaging technologies",
-    "section": "Testing",
-    "text": "Testing"
+    "section": "New header",
+    "text": "New header\nWhat if I link this out?"
+  },
+  {
+    "objectID": "index.html#test-test-testing",
+    "href": "index.html#test-test-testing",
+    "title": "Spatial analysis of high dimensional in situ imaging technologies",
+    "section": "test test testing",
+    "text": "test test testing"
   }
 ]
