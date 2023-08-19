@@ -1,38 +1,52 @@
 [
   {
-    "objectID": "questions.html",
-    "href": "questions.html",
-    "title": "Analytical questions",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "objectID": "software.html#simpleseg",
+    "href": "software.html#simpleseg",
+    "title": "Software",
+    "section": "SimpleSeg",
+    "text": "SimpleSeg\n\nsimpleSeg does bla bla bla"
   },
   {
-    "objectID": "questions.html#quarto",
-    "href": "questions.html#quarto",
-    "title": "Analytical questions",
-    "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "objectID": "software.html#scfeatures",
+    "href": "software.html#scfeatures",
+    "title": "Software",
+    "section": "scFeatures",
+    "text": "scFeatures\n\nscFeatures does bla bla bla"
   },
   {
-    "objectID": "questions.html#running-code",
-    "href": "questions.html#running-code",
-    "title": "Analytical questions",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Spatial analysis of high dimensional in situ imaging technologies",
+    "section": "",
+    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Spatial analysis of high dimensional in situ imaging technologies",
+    "section": "",
+    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+  },
+  {
+    "objectID": "index.html#packages",
+    "href": "index.html#packages",
+    "title": "Spatial analysis of high dimensional in situ imaging technologies",
+    "section": "Packages",
+    "text": "Packages\n\n\n\n\n    \n\nDeeper explanations of the functionality of our software can be found in the Software tab"
   },
   {
     "objectID": "examples.html",
     "href": "examples.html",
     "title": "Spatial analysis applied to different technologies",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "This page contains examples of how to different types of analysis. We have sorted these by technology, however we recommend focusing more on the questions that can be asked, rather than the technologies that were use to address them"
   },
   {
     "objectID": "examples.html#imaging-mass-cytometry",
     "href": "examples.html#imaging-mass-cytometry",
     "title": "Spatial analysis applied to different technologies",
     "section": "Imaging Mass Cytometry",
-    "text": "Imaging Mass Cytometry\n\nSquamous cell carinoma dataset"
+    "text": "Imaging Mass Cytometry\nIMC is a technolog that bla\n\nSquamous cell carinoma dataset\nHere we have a analysis on bla that did bla bla bla"
   },
   {
     "objectID": "examples.html#mibitof",
@@ -60,7 +74,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "How great is SPDS"
   },
   {
     "objectID": "datasets/IMC_SCC.html",
@@ -74,7 +88,7 @@
     "href": "datasets/IMC_SCC.html#test-links",
     "title": "IMC squamous cell carcinoma",
     "section": "Test links",
-    "text": "Test links\nI wonder if spicy() links to the documentation. Or lisaClust(). Or Kontextual()."
+    "text": "Test links\nIf we put functions in the code, they automatically link to the help file Kontextual()."
   },
   {
     "objectID": "datasets/IMC_SCC.html#quarto",
@@ -91,24 +105,59 @@
     "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Spatial analysis of high dimensional in situ imaging technologies",
+    "objectID": "gettingStarted.html",
+    "href": "gettingStarted.html",
+    "title": "Getting Started",
     "section": "",
-    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+    "text": "If you are new to spatial omics data this is a great place to start"
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Spatial analysis of high dimensional in situ imaging technologies",
-    "section": "",
-    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+    "objectID": "gettingStarted.html#what-are-cellular-subcellular-technologies",
+    "href": "gettingStarted.html#what-are-cellular-subcellular-technologies",
+    "title": "Getting Started",
+    "section": "What are cellular subcellular technologies?",
+    "text": "What are cellular subcellular technologies?"
   },
   {
-    "objectID": "index.html#packages",
-    "href": "index.html#packages",
-    "title": "Spatial analysis of high dimensional in situ imaging technologies",
-    "section": "Packages",
-    "text": "Packages"
+    "objectID": "gettingStarted.html#using-our-packages",
+    "href": "gettingStarted.html#using-our-packages",
+    "title": "Getting Started",
+    "section": "Using our packages",
+    "text": "Using our packages\nIts important to know that our package are interoprable with many other awesome packages out there. You can pick and choose whatever you want to do.\nMain thing to know is SpatialExperiment."
+  },
+  {
+    "objectID": "gettingStarted.html#spatialexperiment",
+    "href": "gettingStarted.html#spatialexperiment",
+    "title": "Getting Started",
+    "section": "SpatialExperiment",
+    "text": "SpatialExperiment\nHere is how you turn a csv, data.frame, suerat object or giotto object into a SpatialExperiment."
+  },
+  {
+    "objectID": "gettingStarted.html#analysis-approaches",
+    "href": "gettingStarted.html#analysis-approaches",
+    "title": "Getting Started",
+    "section": "Analysis approaches",
+    "text": "Analysis approaches\nThere are lots of types of analysis you can do. See our Software page for detailed explanations. Broadly, we like to think of spatial analysis in the following way…."
+  },
+  {
+    "objectID": "questions.html",
+    "href": "questions.html",
+    "title": "Analytical questions",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "questions.html#quarto",
+    "href": "questions.html#quarto",
+    "title": "Analytical questions",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "questions.html#running-code",
+    "href": "questions.html#running-code",
+    "title": "Analytical questions",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
   }
 ]

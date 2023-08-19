@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spatial omics analysis - About</title>
+<title>Spatial omics analysis - Software</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,11 +86,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software.html" rel="" target="">
+    <a class="nav-link active" href="./software.html" rel="" target="" aria-current="page">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
@@ -113,14 +113,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#simpleseg" id="toc-simpleseg" class="nav-link active" data-scroll-target="#simpleseg">SimpleSeg</a></li>
+  <li><a href="#scfeatures" id="toc-scfeatures" class="nav-link" data-scroll-target="#scfeatures">scFeatures</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Software</h1>
 </div>
 
 
@@ -135,9 +142,34 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>How great is SPDS</p>
+
+<link rel="stylesheet" href="css/hexagons.css">
+
+<div id="importedContent"></div>
+    <script>
+        fetch('https://raw.githubusercontent.com/SydneyBioX/packageHeader/main/spatialHeader.html')
+            .then(response => response.text())
+            .then(htmlContent => {
+                const importedContentDiv = document.getElementById('importedContent');
+                importedContentDiv.innerHTML = htmlContent;
+            })
+            .catch(error => {
+                console.error('Error fetching content:', error);
+            });
+    </script>
+
+<section id="simpleseg" class="level2">
+<h2 class="anchored" data-anchor-id="simpleseg">SimpleSeg</h2>
+<p><a href="http://www.bioconductor.org/packages/release/bioc/html/FuseSOM.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/simpleSeg/SimpleSeg_Hex_standard.png?raw=true" align="right" style="height: 100px; border: 0px"></a></p>
+<p>simpleSeg does bla bla bla</p>
+</section>
+<section id="scfeatures" class="level2">
+<h2 class="anchored" data-anchor-id="scfeatures">scFeatures</h2>
+<p><a href="http://www.bioconductor.org/packages/release/bioc/html/scFeatures.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scFeatures/sticker_version2.png?raw=true" align="right" style="height: 100px; border: 0px"></a></p>
+<p>scFeatures does bla bla bla</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
