@@ -14,7 +14,7 @@ library(Statial)
 
 ## Test links
 
-I wonder if `spicy()` links to the documentation. Or `lisaClust()`. Or `Kontextual()`.
+If we put functions in the code, they automatically link to the help file `Kontextual()`.
 
 ## Quarto
 

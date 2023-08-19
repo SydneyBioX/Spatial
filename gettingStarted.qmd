@@ -1,0 +1,30 @@
+---
+title: "Getting Started"
+---
+
+If you are new to spatial omics data this is a great place to start
+
+
+## What are cellular subcellular technologies?
+
+
+## Using our packages
+
+Its important to know that our package are interoprable with many other awesome packages
+out there. You can pick and choose whatever you want to do.
+
+Main thing to know is SpatialExperiment.
+
+## SpatialExperiment
+
+Here is how you turn a csv, data.frame, suerat object or giotto object into a SpatialExperiment.
+
+## Analysis approaches
+
+There are lots of types of analysis you can do. See our Software page for detailed explanations. Broadly, we like to think of spatial analysis in the following way....
+
+
+
+
+
+

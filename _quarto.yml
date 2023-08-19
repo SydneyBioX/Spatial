@@ -8,6 +8,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - href: software.qmd
+        text: Software
+      - href: examples.qmd
+        text: Examples
+      - href: gettingStarted.qmd
+        text: Getting Started
 
 format:
   html:
