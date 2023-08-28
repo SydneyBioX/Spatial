@@ -1,5 +1,20 @@
 ---
-title: "About"
+title: "About us"
 ---
 
-How great is SPDS
+
+<img src="images/SPDS.gif" alt="SPDS" style="width: 100%; border: 0px"/>
+
+We are a multidisciplinary team of researchers developing methods to help solve complex global problems, from designing predictive biomarkers of disease progression to ensuring the sustainability and quality of food production.
+
+## Our priorities
+We work on the principle that successful and sustainable collaboration grows organically within the right environment. To this end, our priorities for success are to:
+
+- embrace data science challenges by developing innovative, fit-for-purpose applied methods in synergistic partnerships with key data-generating centres at Sydney and beyond
+
+- address data challenges with high societal impact and to build sustainable approaches
+
+- provide an incubator for interdisciplinary careers
+
+- establish a collaborative community that reflects and values diversity.
+

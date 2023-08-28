@@ -26,11 +26,11 @@ title: "Software"
 ## SimpleSeg 
 <a href="http://www.bioconductor.org/packages/release/bioc/html/FuseSOM.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/simpleSeg/SimpleSeg_Hex_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-simpleSeg does bla bla bla
+simpleSeg provides a structured pipeline for segmentation of cellular tiff stacks and the normalization of features, priming cells for classification / clustering.
 
 ## scFeatures
 <a href="http://www.bioconductor.org/packages/release/bioc/html/scFeatures.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scFeatures/sticker_version2.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-scFeatures does bla bla bla
+scFeatures is a tool that generates multi-view representations of single-cell and spatial data through the construction of a total of 17 feature types.
 
 

@@ -5,25 +5,24 @@ format:
     code-link: true
 ---
 
-This page contains examples of how to different types of analysis. We have sorted these by technology, however we recommend focusing more on the questions that can be asked, rather than the technologies that were use to address them
+This page contains examples of how to different types of analysis. We have sorted these by technology, however we recommend focusing more on the questions that can be asked, rather than the technologies that were use to address them.
 
-| Disease | Technology | Segmentation | Normalisation | Clustering | Colocalisation | Microenvironments | Patient Classification |
+| Disease | Technology | Title | Segmentation | Normalisation | Clustering | Colocalisation | Microenvironments | Patient Classification |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Squamous Cell Carcinoma   | IMC    |  X     | X |  X     | X |  X     | X |
-| Breast cancer   | MIBITOF    |       |  |  X     | X |  X     | X |
-| Bla   | Bla    |      |  |       | X |  X     |  |
-
-
-## Imaging Mass Cytometry
-IMC is a technolog that bla
-
-### [Squamous cell carinoma dataset](datasets/IMC_SCC.qmd)
-Here we have a analysis on bla that did bla bla bla
+| Breast cancer   | MIBITOF    |  Keren_2018 |     |  |   | X |  X     | X |
 
 
 ## MIBITOF
 
-MIBITOF allows bunch of markers...
+MIBI-TOF (multiplexed ion beam imaging by time of flight) is an instrument that uses bright ion sources and orthogonal time-of-flight mass spectrometry to image metal-tagged antibodies at subcellular resolution in clinical tissue sections. The datasets we have seen image approximately 40 labeled antibodies and image fields of view up to $800\mu m × 800 \mu m$ at resolutions down to $260nm$
+
+### [Triple Negative Breast Cancer - Keren_2018](datasets/Keren_2018/Keren_2018.qmd)
+
+A MIBI-TOF dataset profiling tissue from triple-negative breast cancer patients$^1$ is used to illustrate the functionality of our [Statial](https://www.bioconductor.org/packages/release/bioc/html/Statial.html) package. This dataset simultaneously quantifies *in situ* expression of 36 proteins in 41 patients.
+
+*Keren, L. et al. (2018). A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging. Cell, 174(6), 1373-1387.e1319. ([DOI](https://doi.org/10.1016/j.cell.2018.08.039))*
+
+## Imaging Mass Cytometry
 
 ## Phenocycler
 
