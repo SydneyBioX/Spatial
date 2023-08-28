@@ -60,6 +60,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -87,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">About us</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./software.html" rel="" target="">
@@ -117,11 +119,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#imaging-mass-cytometry" id="toc-imaging-mass-cytometry" class="nav-link active" data-scroll-target="#imaging-mass-cytometry">Imaging Mass Cytometry</a>
+  <li><a href="#mibitof" id="toc-mibitof" class="nav-link active" data-scroll-target="#mibitof">MIBITOF</a>
   <ul class="collapse">
-  <li><a href="#squamous-cell-carinoma-dataset" id="toc-squamous-cell-carinoma-dataset" class="nav-link" data-scroll-target="#squamous-cell-carinoma-dataset">Squamous cell carinoma dataset</a></li>
+  <li><a href="#triple-negative-breast-cancer---keren_2018" id="toc-triple-negative-breast-cancer---keren_2018" class="nav-link" data-scroll-target="#triple-negative-breast-cancer---keren_2018">Triple Negative Breast Cancer - Keren_2018</a></li>
   </ul></li>
-  <li><a href="#mibitof" id="toc-mibitof" class="nav-link" data-scroll-target="#mibitof">MIBITOF</a></li>
+  <li><a href="#imaging-mass-cytometry" id="toc-imaging-mass-cytometry" class="nav-link" data-scroll-target="#imaging-mass-cytometry">Imaging Mass Cytometry</a></li>
   <li><a href="#phenocycler" id="toc-phenocycler" class="nav-link" data-scroll-target="#phenocycler">Phenocycler</a></li>
   <li><a href="#cosmx" id="toc-cosmx" class="nav-link" data-scroll-target="#cosmx">CosMx</a></li>
   </ul>
@@ -147,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This page contains examples of how to different types of analysis. We have sorted these by technology, however we recommend focusing more on the questions that can be asked, rather than the technologies that were use to address them</p>
+<p>This page contains examples of how to different types of analysis. We have sorted these by technology, however we recommend focusing more on the questions that can be asked, rather than the technologies that were use to address them.</p>
 <table class="table">
 <colgroup>
 <col style="width: 10%">
@@ -165,6 +167,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="header">
 <th style="text-align: center;">Disease</th>
 <th style="text-align: center;">Technology</th>
+<th style="text-align: center;">Title</th>
 <th style="text-align: center;">Segmentation</th>
 <th style="text-align: center;">Normalisation</th>
 <th style="text-align: center;">Clustering</th>
@@ -172,59 +175,34 @@ ul.task-list li input[type="checkbox"] {
 <th style="text-align: center;">Microenvironments</th>
 <th style="text-align: center;">Patient Classification</th>
 <th style="text-align: center;"></th>
-<th style="text-align: center;"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Squamous Cell Carcinoma</td>
-<td style="text-align: center;">IMC</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
 <td style="text-align: center;">Breast cancer</td>
 <td style="text-align: center;">MIBITOF</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Bla</td>
-<td style="text-align: center;">Bla</td>
+<td style="text-align: center;">Keren_2018</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<section id="imaging-mass-cytometry" class="level2">
-<h2 class="anchored" data-anchor-id="imaging-mass-cytometry">Imaging Mass Cytometry</h2>
-<p>IMC is a technolog that bla</p>
-<section id="squamous-cell-carinoma-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="squamous-cell-carinoma-dataset"><a href="./datasets/IMC_SCC.html">Squamous cell carinoma dataset</a></h3>
-<p>Here we have a analysis on bla that did bla bla bla</p>
-</section>
-</section>
 <section id="mibitof" class="level2">
 <h2 class="anchored" data-anchor-id="mibitof">MIBITOF</h2>
-<p>MIBITOF allows bunch of markers…</p>
+<p>MIBI-TOF (multiplexed ion beam imaging by time of flight) is an instrument that uses bright ion sources and orthogonal time-of-flight mass spectrometry to image metal-tagged antibodies at subcellular resolution in clinical tissue sections. The datasets we have seen image approximately 40 labeled antibodies and image fields of view up to <span class="math inline">\(800\mu m × 800 \mu m\)</span> at resolutions down to <span class="math inline">\(260nm\)</span></p>
+<section id="triple-negative-breast-cancer---keren_2018" class="level3">
+<h3 class="anchored" data-anchor-id="triple-negative-breast-cancer---keren_2018"><a href="./datasets/Keren_2018/Keren_2018.html">Triple Negative Breast Cancer - Keren_2018</a></h3>
+<p>A MIBI-TOF dataset profiling tissue from triple-negative breast cancer patients<span class="math inline">\(^1\)</span> is used to illustrate the functionality of our <a href="https://www.bioconductor.org/packages/release/bioc/html/Statial.html">Statial</a> package. This dataset simultaneously quantifies <em>in situ</em> expression of 36 proteins in 41 patients.</p>
+<p><em>Keren, L. et al.&nbsp;(2018). A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging. Cell, 174(6), 1373-1387.e1319. (<a href="https://doi.org/10.1016/j.cell.2018.08.039">DOI</a>)</em></p>
+</section>
+</section>
+<section id="imaging-mass-cytometry" class="level2">
+<h2 class="anchored" data-anchor-id="imaging-mass-cytometry">Imaging Mass Cytometry</h2>
 </section>
 <section id="phenocycler" class="level2">
 <h2 class="anchored" data-anchor-id="phenocycler">Phenocycler</h2>
