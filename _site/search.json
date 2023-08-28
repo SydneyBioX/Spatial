@@ -18,21 +18,21 @@
     "href": "index.html",
     "title": "Spatial analysis of high dimensional in situ imaging technologies",
     "section": "",
-    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+    "text": "Recent advances in highly multiplexed cell imaging technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many more) have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. These technologies enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
   },
   {
     "objectID": "index.html#welcome",
     "href": "index.html#welcome",
     "title": "Spatial analysis of high dimensional in situ imaging technologies",
     "section": "",
-    "text": "Highly multiplexed cellular and subcellular imaging assays: Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
+    "text": "Recent advances in highly multiplexed cell imaging technologies such as PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many more) have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. These technologies enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in scdney can be used to provide new insights into complex biological systems and diseases."
   },
   {
     "objectID": "index.html#packages",
     "href": "index.html#packages",
     "title": "Spatial analysis of high dimensional in situ imaging technologies",
     "section": "Packages",
-    "text": "Packages\n\n\n\n\n    \n\nDeeper explanations of the functionality of our software can be found in the Software tab"
+    "text": "Packages\n\n\n\n\n\n    \n\nDeeper explanations of the functionality of our software can be found in the Software tab"
   },
   {
     "objectID": "examples.html",
@@ -46,7 +46,7 @@
     "href": "examples.html#mibitof",
     "title": "Spatial analysis applied to different technologies",
     "section": "MIBITOF",
-    "text": "MIBITOF\nMIBI-TOF (multiplexed ion beam imaging by time of flight) is an instrument that uses bright ion sources and orthogonal time-of-flight mass spectrometry to image metal-tagged antibodies at subcellular resolution in clinical tissue sections. The datasets we have seen image approximately 40 labeled antibodies and image fields of view up to \\(800\\mu m × 800 \\mu m\\) at resolutions down to \\(260nm\\)\n\nTriple Negative Breast Cancer - Keren_2018\nA MIBI-TOF dataset profiling tissue from triple-negative breast cancer patients\\(^1\\) is used to illustrate the functionality of our Statial package. This dataset simultaneously quantifies in situ expression of 36 proteins in 41 patients.\nKeren, L. et al. (2018). A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging. Cell, 174(6), 1373-1387.e1319. (DOI)"
+    "text": "MIBITOF\nMIBI-TOF (multiplexed ion beam imaging by time of flight) is an instrument that uses bright ion sources and orthogonal time-of-flight mass spectrometry to image metal-tagged antibodies at subcellular resolution in clinical tissue sections. The datasets we have seen image approximately 40 labeled antibodies and image fields of view up to \\(800\\mu m × 800 \\mu m\\) at resolutions down to \\(260nm\\)\n\nTriple Negative Breast Cancer - Keren_2018\nA MIBI-TOF dataset profiling tissue from triple-negative breast cancer patients is used to illustrate the functionality of our Statial package. This dataset simultaneously quantifies in situ expression of 36 proteins in 41 patients.\nKeren et al. (2018). A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging. Cell, 174(6), 1373-1387.e1319. (DOI)\n\n\nDuctal carcinoma in situ - Risom_2022\nA MIBI-TOF data profiling the spatial landscape of ductal carcinoma in situ (DCIS), which is a pre-invasive lesion that is thought to be a precursor to invasive breast cancer (IBC). This is currently the primary dataset used for illustration of our spicyWorkflow on Bioconductor.The key conclusion of this manuscript (amongst others) is that spatial information about cells can be used to predict disease progression in patients. We use a bunch of our packages to make a similar conclusion.\nRisom et al. (2022). Transition to invasive breast cancer is associated with progressive changes in the structure and composition of tumor stroma. Cell, 185(2), 299-310.e18 (DOI)"
   },
   {
     "objectID": "examples.html#imaging-mass-cytometry",
@@ -102,7 +102,7 @@
     "href": "about.html",
     "title": "About us",
     "section": "",
-    "text": "We are a multidisciplinary team of researchers developing methods to help solve complex global problems, from designing predictive biomarkers of disease progression to ensuring the sustainability and quality of food production."
+    "text": "We are members of the Sydney Precision Data Science Centre at the University of Sydney. We are a multidisciplinary team of researchers developing methods to help solve complex global problems, from designing predictive biomarkers of disease progression to ensuring the sustainability and quality of food production."
   },
   {
     "objectID": "about.html#our-priorities",
@@ -229,5 +229,12 @@
     "title": "Analytical questions",
     "section": "Running Code",
     "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "about.html#key-involvement",
+    "href": "about.html#key-involvement",
+    "title": "About us",
+    "section": "Key involvement",
+    "text": "Key involvement\n\nResearch Leaders\n Dr Shila Ghazanfar\n Dr Ellis Patrick\n Prof Jean Yang\n\n\nContributors\n Farhan Ameen\n Alex Qin\n Nick Robertson"
   }
 ]

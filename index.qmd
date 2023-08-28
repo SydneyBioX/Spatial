@@ -7,12 +7,14 @@ toc-depth: 1
 <img src="IMC_colon.png" align="right" style="height: 200px; border: 0px"/>
 
 
+Recent advances in highly multiplexed cell imaging technologies such as *PhenoCycler, IMC, CosMx, Xenium, and MERFISH (and many more)* have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. These technologies enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in [scdney](https://sydneybiox.github.io/scdney/) can be used to provide new insights into complex biological systems and diseases.
 
-*Highly multiplexed cellular and subcellular imaging assays:* Recent advances in highly multiplexed cell imaging technologies have fundamentally revolutionized our ability to observe complex cellular relationships in tissue. Where previous immunohistochemistry protocols only allowed the visualization of cells that could be characterized by two or three surface proteins, cutting-edge technologies characterize cells with upwards of 50 proteins or 1000s of RNA in situ. Technologies such as **PhenoCycler, IMC, CosMx, Xenium, and MERFISH** (and many others) enable precise classification of cell sub-types and provide an unprecedented depiction of cellular heterogeneity in a tissue environment. These technical developments have necessitated the development of a variety of new analytical approaches that are required to harness these new imaging technologies. On this website we will demonstrate how packages in [scdney](https://sydneybiox.github.io/scdney/) can be used to provide new insights into complex biological systems and diseases.
+
 
 ## Packages
 
 ```{=html}
+
 
 <link rel="stylesheet" href="css/hexagons.css">
 
@@ -31,4 +33,4 @@ toc-depth: 1
 
 ```
 
-Deeper explanations of the functionality of our software can be found in the [Software tab]()
+Deeper explanations of the functionality of our software can be found in the [Software tab](software.qmd)
