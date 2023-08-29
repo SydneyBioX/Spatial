@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Spatial omics analysis - Early mouse organogenesis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="../../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="../../site_libs/plotly-binding-4.10.2/plotly.js"></script><script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script><script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script><link href="../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script><link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/USydLogo.svg" alt="" class="navbar-logo"></a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Spatial omics analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About us</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html" rel="" target="">
+ <span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../examples.html" rel="" target="">
+ <span class="menu-text">Examples</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../gettingStarted.html" rel="" target="">
+ <span class="menu-text">Getting Started</span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#loading-r-packages-and-setting-parameters" id="toc-loading-r-packages-and-setting-parameters" class="nav-link" data-scroll-target="#loading-r-packages-and-setting-parameters">Loading R packages and setting parameters</a></li>
+  <li><a href="#part-1-data-structures-and-exploratory-data-analysis" id="toc-part-1-data-structures-and-exploratory-data-analysis" class="nav-link" data-scroll-target="#part-1-data-structures-and-exploratory-data-analysis">Part 1: Data structures and exploratory data analysis</a></li>
+  <li><a href="#part-2-schot-analysis-of-the-developing-brain" id="toc-part-2-schot-analysis-of-the-developing-brain" class="nav-link" data-scroll-target="#part-2-schot-analysis-of-the-developing-brain">Part 2: scHOT analysis of the developing brain</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Early mouse organogenesis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
+<p>In the following we will conductor an analysis of <a href="https://www.nature.com/articles/s41587-021-01006-2">Lohoff et al’s</a> study of early mouse organogenesis that was performed using a seqFISH. This analysis was adapted from a workshop that Shila and Ellis deliver as an introduction to spatial data analysis.</p>
+</section><section id="loading-r-packages-and-setting-parameters" class="level1"><h1>Loading R packages and setting parameters</h1>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="co"># Data packages</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lmweber/STexampleData">STexampleData</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/BodenmillerGroup/imcdatasets">imcdatasets</a></span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Packages from scdney</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scHOT</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Extra packages needed for workshop</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://bioconductor.org/packages/scater/">scater</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scuttle</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">batchelor</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># We can use the following to increase computational speed.</span></span>
+<span><span class="co"># If you feel confident in the amount of CPU cores and/or memory that you have </span></span>
+<span><span class="co"># access to, feel free to increase nCores.</span></span>
+<span></span>
+<span><span class="va">nCores</span> <span class="op">&lt;-</span> <span class="fl">1</span> </span>
+<span><span class="va">BPPARAM</span> <span class="op">&lt;-</span> <span class="fu">simpleSeg</span><span class="fu">:::</span><span class="fu"><a href="https://sydneybiox.github.io/simpleSeg/reference/generateBPParam.html">generateBPParam</a></span><span class="op">(</span><span class="va">nCores</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># The following will improve the aesthetics of some of the plots that we will</span></span>
+<span><span class="co"># generate.</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"celltype_colours.R"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="part-1-data-structures-and-exploratory-data-analysis" class="level1"><h1>Part 1: Data structures and exploratory data analysis</h1>
+<p>Here we will download the dataset, examine the structure and perform some exploratory analyses. We will use a subset of data that is made available from the <a href="https://bioconductor.org/packages/release/data/experiment/html/STexampleData.html"><code>STExampleData</code></a> package. Downloading this might take a few moments and you may be prompted to install some additional packages.</p>
+<p>Here we download the seqFISH mouse embryo data. This is a <code>SpatialExperiment</code> object, which extends the <code>SingleCellExperiment</code> object.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu">STexampleData</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/STexampleData/man/STexampleData.html">seqFISH_mouseEmbryo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>see ?STexampleData and browseVignettes('STexampleData') for documentation</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>loading from cache</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: BumpyMatrix</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SpatialExperiment 
+dim: 351 11026 
+metadata(0):
+assays(2): counts molecules
+rownames(351): Abcc4 Acp5 ... Zfp57 Zic3
+rowData names(1): gene_name
+colnames(11026): embryo1_Pos0_cell10_z2 embryo1_Pos0_cell100_z2 ...
+  embryo1_Pos28_cell97_z2 embryo1_Pos28_cell98_z2
+colData names(14): cell_id embryo ... segmentation_vertices sample_id
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):
+spatialCoords names(2) : x y
+imgData names(0):</code></pre>
+</div>
+</div>
+<p>We can use functions designed for <code>SingleCellExperiment</code> objects in the <code>scater</code> package for plotting via the <code>reducedDim</code> slot. We multiply the spatial coordinates by a matrix to flip the y-axis and ensure we fix the aspect ratio.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scuttle/man/logNormCounts.html">logNormCounts</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span>
+<span><span class="va">coord_transform</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SpatialExperiment/man/SpatialExperiment-methods.html">spatialCoords</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">coord_transform</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span>, colour_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sox2"</span><span class="op">)</span>, point_size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Questions</strong></p>
+<ol type="1">
+<li>How many cells are in this data?</li>
+<li>How many genes?</li>
+<li>Plot gene expression mapping point size to the cell area.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># try to answer the above question using the spe object. </span></span>
+<span><span class="co"># you may want to check the SingleCellExperiment vignette.</span></span>
+<span><span class="co"># https://bioconductor.org/packages/3.17/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can perform a typical gene-expression based analysis for this data. Later in part two we will perform some specific analytical techniques, but for now let’s explore the dataset and use methods designed for single cell data.</p>
+<p>Dimensionality reduction using PCA, batch correction across tiles using the <code>batchelor</code> package, followed by UMAP and plotting.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocSingular/man/runPCA.html">runPCA</a></span><span class="op">(</span><span class="va">spe</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">b.out</span> <span class="op">&lt;-</span> <span class="fu">batchelor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/batchelor/man/batchCorrect.html">batchCorrect</a></span><span class="op">(</span><span class="va">spe</span>, batch <span class="op">=</span> <span class="va">spe</span><span class="op">$</span><span class="va">pos</span>, assay.type <span class="op">=</span> <span class="st">"logcounts"</span>, PARAM<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/batchelor/man/BatchelorParam.html">FastMnnParam</a></span><span class="op">(</span>d<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"FastMnn"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDim</a></span><span class="op">(</span><span class="va">b.out</span>, <span class="st">"corrected"</span><span class="op">)</span></span>
+<span><span class="va">spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scater/man/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">spe</span>, dimred <span class="op">=</span> <span class="st">"FastMnn"</span><span class="op">)</span></span>
+<span><span class="va">spe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SpatialExperiment 
+dim: 351 11026 
+metadata(0):
+assays(3): counts molecules logcounts
+rownames(351): Abcc4 Acp5 ... Zfp57 Zic3
+rowData names(1): gene_name
+colnames(11026): embryo1_Pos0_cell10_z2 embryo1_Pos0_cell100_z2 ...
+  embryo1_Pos28_cell97_z2 embryo1_Pos28_cell98_z2
+colData names(15): cell_id embryo ... sample_id sizeFactor
+reducedDimNames(4): spatialCoords PCA FastMnn UMAP
+mainExpName: NULL
+altExpNames(0):
+spatialCoords names(2) : x y
+imgData names(1): sample_id</code></pre>
+</div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g_celltype_umap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"UMAP"</span>, colour_by <span class="op">=</span> <span class="st">"celltype_mapped_refined"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">celltype_colours</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.</code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g_celltype_umap</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"UMAP"</span>, colour_by <span class="op">=</span> <span class="st">"Sox2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g_celltype_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span>, colour_by <span class="op">=</span> <span class="st">"celltype_mapped_refined"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">celltype_colours</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.</code></pre>
+</div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g_all</span> <span class="op">&lt;-</span> <span class="va">g_celltype_spatial</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span> <span class="va">g_celltype_umap</span></span>
+<span><span class="va">g_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Advanced/Extension Question</strong></p>
+<ol type="1">
+<li>What considerations need to be made for batch correction of spatial data? What assumptions are being made and/or broken? How could you check this?</li>
+<li>Check out the <a href="https://davidgohel.github.io/ggiraph/index.html"><code>ggiraph</code></a> package for extending the <code>g_all</code> object to an interactive plot with a tooltip that links the spatial and UMAP coordinate systems. (Hint: This may involve generating a new ggplot object outside of the <code>plotReducedDim</code> function.)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># try to examine answer the above questions using the spe object. </span></span>
+<span><span class="co"># you may want to set up some small simulation..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="part-2-schot-analysis-of-the-developing-brain" class="level1"><h1>Part 2: scHOT analysis of the developing brain</h1>
+<p>Here we will ask which gene patterns we observe to be changing across the spe$gutRegion cell type in space. Note that we want to assess the anatomical region corresponding to the anterior end of the developing gut developing brain so we will first subset the cells using the spatial coordinates. We can check what we have selected by plotting.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe</span><span class="op">$</span><span class="va">gutRegion</span> <span class="op">&lt;-</span> <span class="va">spe</span><span class="op">$</span><span class="va">celltype_mapped_refined</span> <span class="op">==</span> <span class="st">"Gut tube"</span> <span class="op">&amp;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">0.5</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span>, colour_by <span class="op">=</span> <span class="st">"gutRegion"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TRUE"</span> <span class="op">=</span> <span class="st">"red"</span>, <span class="st">"FALSE"</span> <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for colour is already present.
+Adding another scale for colour, which will replace the existing scale.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Let’s subset the data to only these cells and continue with our scHOT analysis.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe_gut</span> <span class="op">&lt;-</span> <span class="va">spe</span><span class="op">[</span>,<span class="va">spe</span><span class="op">$</span><span class="va">gutRegion</span><span class="op">]</span></span>
+<span><span class="va">spe_gut</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SpatialExperiment 
+dim: 351 472 
+metadata(0):
+assays(3): counts molecules logcounts
+rownames(351): Abcc4 Acp5 ... Zfp57 Zic3
+rowData names(1): gene_name
+colnames(472): embryo1_Pos3_cell377_z2 embryo1_Pos3_cell388_z2 ...
+  embryo1_Pos27_cell74_z2 embryo1_Pos28_cell373_z2
+colData names(16): cell_id embryo ... sizeFactor gutRegion
+reducedDimNames(4): spatialCoords PCA FastMnn UMAP
+mainExpName: NULL
+altExpNames(0):
+spatialCoords names(2) : x y
+imgData names(1): sample_id</code></pre>
+</div>
+</div>
+<p>We select genes with at least some proportion of expressed cells for testing, and create the <code>scHOT</code> object.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/dge.html">counts</a></span><span class="op">(</span><span class="va">spe_gut</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span>, <span class="fl">40</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gene_to_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">spe_gut</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/dge.html">counts</a></span><span class="op">(</span><span class="va">spe_gut</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0.2</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">gene_to_test</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 165</code></pre>
+</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">gene_to_test</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">gene_to_test</span>, <span class="fl">1</span>, <span class="va">paste0</span>, collapse <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gene_to_test</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        [,1]     
+Acvr1   "Acvr1"  
+Acvr2a  "Acvr2a" 
+Ahnak   "Ahnak"  
+Akr1c19 "Akr1c19"
+Aldh1a2 "Aldh1a2"
+Aldh2   "Aldh2"  </code></pre>
+</div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_buildFromSCE.html">scHOT_buildFromSCE</a></span><span class="op">(</span><span class="va">spe_gut</span>,</span>
+<span>                                    assayName <span class="op">=</span> <span class="st">"logcounts"</span>,</span>
+<span>                                    positionType <span class="op">=</span> <span class="st">"spatial"</span>,</span>
+<span>                                    positionColData <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x_global_affine"</span>, <span class="st">"y_global_affine"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">scHOT_spatial</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: scHOT 
+dim: 351 472 
+metadata(0):
+assays(1): expression
+rownames(351): Abcc4 Acp5 ... Zfp57 Zic3
+rowData names(0):
+colnames(472): embryo1_Pos3_cell377_z2 embryo1_Pos3_cell388_z2 ...
+  embryo1_Pos27_cell74_z2 embryo1_Pos28_cell373_z2
+colData names(16): cell_id embryo ... sizeFactor gutRegion
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):
+testingScaffold dim: 0 0 
+weightMatrix dim: 0 0 
+scHOT_output colnames (0):
+param names (0):
+position type: spatial </code></pre>
+</div>
+</div>
+<p>We now add the testing scaffold to the <code>scHOT</code> object, and set the local weight matrix for testing, with a choice of span of 0.1 (the proportion of cells to weight around each cell). We can speed up computation by not requiring the weight matrix correspond to every individual cell, but instead a random selection among all the cells using the <code>thin</code> function.</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_addTestingScaffold.html">scHOT_addTestingScaffold</a></span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="va">gene_to_test</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">scHOT_spatial</span><span class="op">@</span><span class="va">testingScaffold</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        gene_1   
+Acvr1   "Acvr1"  
+Acvr2a  "Acvr2a" 
+Ahnak   "Ahnak"  
+Akr1c19 "Akr1c19"
+Aldh1a2 "Aldh1a2"
+Aldh2   "Aldh2"  </code></pre>
+</div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_setWeightMatrix.html">scHOT_setWeightMatrix</a></span><span class="op">(</span><span class="va">scHOT_spatial</span>, span <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>weightMatrix not provided, generating one using parameter settings...</code></pre>
+</div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span><span class="op">@</span><span class="va">weightMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/thin.html">thin</a></span><span class="op">(</span><span class="va">scHOT_spatial</span><span class="op">@</span><span class="va">weightMatrix</span>, n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"weightMatrix"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  53 472</code></pre>
+</div>
+</div>
+<p>For a given cell we can visually examine the local weight given by the span parameter.</p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cellID</span> <span class="op">=</span> <span class="fl">10</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">colData</span><span class="op">(</span><span class="va">scHOT_spatial</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      W <span class="op">=</span> <span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"weightMatrix"</span><span class="op">)</span><span class="op">[</span><span class="va">cellID</span>,<span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_global_affine</span>, y <span class="op">=</span> <span class="op">-</span><span class="va">y_global_affine</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">W</span>, size <span class="op">=</span> <span class="va">W</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_colour_gradient</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"black"</span>, high <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size_continuous</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">2.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Spatial Weight"</span><span class="op">)</span>,</span>
+<span>         size <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Spatial Weight"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Central cell: "</span>, <span class="va">cellID</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Question</strong></p>
+<ol type="1">
+<li>How will the results change if the span is increased/decreased?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Make associated changes to the code to test out the question above.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We set the higher order function as the weighted mean function, and then calculate the observed higher order test statistics. This may take around 10 seconds.</p>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_calculateGlobalHigherOrderFunction.html">scHOT_calculateGlobalHigherOrderFunction</a></span><span class="op">(</span></span>
+<span>    <span class="va">scHOT_spatial</span>,</span>
+<span>    higherOrderFunction <span class="op">=</span> <span class="va">weightedMean</span>,</span>
+<span>    higherOrderFunctionType <span class="op">=</span> <span class="st">"weighted"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>higherOrderFunctionType given will replace any stored param</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>higherOrderFunction given will replace any stored param</code></pre>
+</div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"scHOT_output"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DataFrame with 165 rows and 2 columns
+             gene_1 globalHigherOrderFunction
+        &lt;character&gt;                  &lt;matrix&gt;
+Acvr1         Acvr1                  0.216666
+Acvr2a       Acvr2a                  0.375776
+Ahnak         Ahnak                  0.976418
+Akr1c19     Akr1c19                  0.744070
+Aldh1a2     Aldh1a2                  0.245981
+...             ...                       ...
+Wnt5a         Wnt5a                  0.335820
+Wnt5b         Wnt5b                  0.220300
+Xist           Xist                  1.162241
+Zfp444       Zfp444                  0.744082
+Zfp57         Zfp57                  0.595519</code></pre>
+</div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_calculateHigherOrderTestStatistics.html">scHOT_calculateHigherOrderTestStatistics</a></span><span class="op">(</span></span>
+<span>    <span class="va">scHOT_spatial</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>higherOrderSummaryFunction will replace any stored param</code></pre>
+</div>
+</div>
+<p>Now we can plot the overall mean versus the scHOT statistic to observe any relationship. Labels can be interactively visualised using <code>ggplotly</code>. Some genes may have different distributions so we turn to permutation testing to assess statistical significance.</p>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">scHOT_spatial</span><span class="op">@</span><span class="va">scHOT_output</span><span class="op">)</span>, </span>
+<span>           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">globalHigherOrderFunction</span>, y <span class="op">=</span> <span class="va">higherOrderStatistic</span>, label <span class="op">=</span> <span class="va">gene_1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Mean across all cells"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"scHOT statistic for local weightedMean"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">g</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c8f821f228f6ba66285a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c8f821f228f6ba66285a">{"x":{"data":[{"x":[0.21666552735611611,0.37577624073907062,0.97641826897498996,0.74407017030072786,0.24598113331792176,0.57621688385637004,0.23714015727416829,0.21311146138673961,0.57203612263584536,0.21501613520732421,0.51264320790253159,0.78364174184367774,0.61137793088200598,0.23908786096561196,0.57331002310046431,0.79441922973015022,0.29529448321734508,0.22554474469973526,1.3034118346505226,0.65843819340434984,0.36069675428384212,0.50167467078331296,1.6982331364217238,0.6169600807730351,0.31478264601638573,0.44608821671678767,0.34208291118085421,1.9602204845818796,0.63466372607287114,0.72354119106741821,0.48109400065677832,0.2782337364534731,0.71526027492151278,0.92291201508114784,0.6432469482317259,0.21184593402623622,0.82435111277727369,0.41624493839071014,0.60440035919341417,1.4422476150058909,1.075913614761882,0.20042244573595483,0.27028744249370973,0.37269680194193966,0.74477315065749117,0.7866580914135477,0.22107122298289217,1.2763002780546775,1.1635097126550837,0.4120981727395866,0.25732306656694159,2.0492375226753303,1.3820831684358559,0.29890041870737799,0.38018117956576419,0.20808104326229426,1.0954940816795466,1.9601907765655602,0.2699867563461546,0.66824020210897617,0.32522575230510742,0.58927391005327978,0.58682333818527499,0.29647986944199978,0.19235173147853118,0.50884635454788629,0.24722469804609015,0.76766056339513056,0.55574180080135738,0.24864530189996081,0.25388676965681539,0.62470373987410555,0.21718656392817837,0.3540037183500146,0.58266002463937361,0.7884118671369108,0.57216715914481908,0.55700349034140129,0.58223625859697292,1.6139119096047625,1.0926070950474727,0.25316502418075132,0.24402709287273733,1.2309838380385743,1.4927254753415129,3.1461735946697611,0.54584533525953693,0.58728140567460896,2.7900368714686992,1.121406291147095,0.67470063305624151,0.5950188928353165,1.2933786162089944,0.21372117903023019,0.39291396306236454,0.80984277898690182,0.25062482071371628,0.28616762990566519,3.1714201156286199,0.27637731585371667,0.55632613598057212,0.60108958405887536,0.32671818851712797,0.98607793273384281,0.42119090449842173,0.32815258332994041,1.1472873701564217,0.71181135115499838,0.21488565244537938,0.23273347444793882,0.85701652609813805,0.26772453783279287,0.30990857893632007,0.33575352309027001,0.20264373803268534,0.45420800833416286,0.23978661944540236,0.21479506920752411,2.4988430121508967,0.24600963608570298,0.41973395792336066,0.23305094778343419,0.41605637457964789,0.27926233014940444,0.4537272391422531,0.31457161989425569,0.22211894233092785,1.1842563007397477,1.0084242460794188,0.75690504423769356,0.3426839327056237,0.23998577481502317,1.6203129561432765,1.1630577214433306,0.43160490248648653,0.4237788706716783,0.28103994379488711,0.7860524133034128,0.36636472198663073,0.23885545135155609,1.414629844358563,2.1829706132926536,0.54676314117002078,0.47472551591541745,0.47808969273253948,0.58594082534803971,0.87386089471660489,0.49776455063325081,0.20957263415951197,1.6886508256146189,2.3593471668159869,0.32030042961685501,0.2611588156308331,1.2984821828822615,0.50716608578160127,0.29612081131710122,1.30846630033652,0.27344062006270492,0.31903210675918398,0.60523576725855821,0.33581994971876239,0.22030035859149219,1.1622405164885681,0.74408203349418633,0.59551893573281622],"y":[0.075095380214497021,0.066514261705854574,0.33198974116788166,0.16733424713635042,0.18278360718917858,0.047671537659420338,0.07186424187938692,0.07296244767464273,0.073181758790845611,0.075120169081686533,0.30177676403587872,0.1360275037983418,0.49699891953758263,0.056942698676209873,0.49364457413495111,0.41880335773158406,0.20077560847361331,0.11467506362167465,0.4027559706476122,0.35314778827094068,0.19625521212022629,0.29492911074680683,0.45514740322789654,0.4539109990827444,0.15886662220312908,0.31463682633120993,0.096375648802461467,0.28731276477496509,0.45716024335599253,0.37270448722092175,0.14208552431771437,0.19677325129049691,0.40613789875267448,0.25051524280204962,0.19710074006945463,0.049166249684574538,0.45953594375934403,0.092989995065445849,0.14184919566747706,0.092563539791341451,0.22640012377923538,0.071806531265627305,0.074721694907642425,0.067030775412973254,0.14743939925476779,0.1734723099137484,0.10109092167971297,0.18179746784504916,0.18523524547279363,0.1175773883248421,0.16478510133758065,0.67492003058760197,0.366516341294432,0.10155142974125538,0.197116780949042,0.10250082750830299,0.18832169593096001,0.18886922151675239,0.19659512793646761,0.28064129449400815,0.23524277936887625,0.48264343713798979,0.57536942841077399,0.12822926457478565,0.08358813994269669,0.45639989147226695,0.053989331141883028,0.55655937606082417,0.4822046668653534,0.058089447246819553,0.13102669292250885,0.12022546604755679,0.10148233737483212,0.27844114183633184,0.34495831689211026,0.28451211012487748,0.29033668050777695,0.24716736575919387,0.25272480409698705,0.41528830442036102,0.26209008279250506,0.045907743179835855,0.09085191586359348,0.19727984475908225,0.16053793632899105,0.28946312010240488,0.17750889579707813,0.24099351762276219,0.36913043172168652,0.33793229874715225,0.13422303963379703,0.35986322791147862,0.25160004707783945,0.072702929914132353,0.066365839569215337,0.16501604172984119,0.11689242051874478,0.11761442755781423,0.31131567935608212,0.093249754746791064,0.65257377436243924,0.14392269285478268,0.13614020147214193,0.69828735622624694,0.49888120969141392,0.093675322304645522,0.16645054123515643,0.10964026189916988,0.083969838940518488,0.053648789168821397,0.27369883421291136,0.077623141162213583,0.12466191712904856,0.29624618414932713,0.073048534054927172,0.56965653768002134,0.054245878043803236,0.058404339597059228,0.40998662475795533,0.16397672470283373,0.22379415253303789,0.083410448705932005,0.17780335910001122,0.10058222373924668,0.099150618043280792,0.13081957061787233,0.18269142698974802,0.12340876027492466,0.16965359159267754,0.092757739866083044,0.14286592514491342,0.091742916407448818,0.67710108943687441,0.75174986496642204,0.34742425041077118,0.10223663225145127,0.10097882441763696,0.34652476752963296,0.076266557294053891,0.11384079137320723,0.39927390801112272,0.41994711407553248,0.42476491099519398,0.1063925332329429,0.56488051773448922,0.34040256111296369,0.46242377876376256,0.45279942151473102,0.083654718276944068,0.14457351633888252,0.12042511501795562,0.051474315762060699,0.062109339514151457,0.0954565499552259,0.26578096419295338,0.11300255828680771,0.26947465570342066,0.12077106508792357,0.067784020669587802,0.094066179765152497,0.17229957637974883,0.10492409670964813,0.12082808057197614,0.11892960029164809,0.13012771733103512],"text":["globalHigherOrderFunction: 0.2166655<br />higherOrderStatistic: 0.07509538<br />gene_1: Acvr1","globalHigherOrderFunction: 0.3757762<br />higherOrderStatistic: 0.06651426<br />gene_1: Acvr2a","globalHigherOrderFunction: 0.9764183<br />higherOrderStatistic: 0.33198974<br />gene_1: Ahnak","globalHigherOrderFunction: 0.7440702<br />higherOrderStatistic: 0.16733425<br />gene_1: Akr1c19","globalHigherOrderFunction: 0.2459811<br />higherOrderStatistic: 0.18278361<br />gene_1: Aldh1a2","globalHigherOrderFunction: 0.5762169<br />higherOrderStatistic: 0.04767154<br />gene_1: Aldh2","globalHigherOrderFunction: 0.2371402<br />higherOrderStatistic: 0.07186424<br />gene_1: Apln","globalHigherOrderFunction: 0.2131115<br />higherOrderStatistic: 0.07296245<br />gene_1: Apoa4","globalHigherOrderFunction: 0.5720361<br />higherOrderStatistic: 0.07318176<br />gene_1: Ash2l","globalHigherOrderFunction: 0.2150161<br />higherOrderStatistic: 0.07512017<br />gene_1: Atp1b1","globalHigherOrderFunction: 0.5126432<br />higherOrderStatistic: 0.30177676<br />gene_1: Axin2","globalHigherOrderFunction: 0.7836417<br />higherOrderStatistic: 0.13602750<br />gene_1: Bak1","globalHigherOrderFunction: 0.6113779<br />higherOrderStatistic: 0.49699892<br />gene_1: Bambi","globalHigherOrderFunction: 0.2390879<br />higherOrderStatistic: 0.05694270<br />gene_1: Bid","globalHigherOrderFunction: 0.5733100<br />higherOrderStatistic: 0.49364457<br />gene_1: Bmp4","globalHigherOrderFunction: 0.7944192<br />higherOrderStatistic: 0.41880336<br />gene_1: Bmp7","globalHigherOrderFunction: 0.2952945<br />higherOrderStatistic: 0.20077561<br />gene_1: Car7","globalHigherOrderFunction: 0.2255447<br />higherOrderStatistic: 0.11467506<br />gene_1: Cavin3","globalHigherOrderFunction: 1.3034118<br />higherOrderStatistic: 0.40275597<br />gene_1: Cdh1","globalHigherOrderFunction: 0.6584382<br />higherOrderStatistic: 0.35314779<br />gene_1: Cdh2","globalHigherOrderFunction: 0.3606968<br />higherOrderStatistic: 0.19625521<br />gene_1: Cers4","globalHigherOrderFunction: 0.5016747<br />higherOrderStatistic: 0.29492911<br />gene_1: Chrd","globalHigherOrderFunction: 1.6982331<br />higherOrderStatistic: 0.45514740<br />gene_1: Cldn4","globalHigherOrderFunction: 0.6169601<br />higherOrderStatistic: 0.45391100<br />gene_1: Clic6","globalHigherOrderFunction: 0.3147826<br />higherOrderStatistic: 0.15886662<br />gene_1: Cntfr","globalHigherOrderFunction: 0.4460882<br />higherOrderStatistic: 0.31463683<br />gene_1: Col1a2","globalHigherOrderFunction: 0.3420829<br />higherOrderStatistic: 0.09637565<br />gene_1: Col26a1","globalHigherOrderFunction: 1.9602205<br />higherOrderStatistic: 0.28731276<br />gene_1: Col4a1","globalHigherOrderFunction: 0.6346637<br />higherOrderStatistic: 0.45716024<br />gene_1: Cpm","globalHigherOrderFunction: 0.7235412<br />higherOrderStatistic: 0.37270449<br />gene_1: Cpn1","globalHigherOrderFunction: 0.4810940<br />higherOrderStatistic: 0.14208552<br />gene_1: Cxcl12","globalHigherOrderFunction: 0.2782337<br />higherOrderStatistic: 0.19677325<br />gene_1: Cyp26a1","globalHigherOrderFunction: 0.7152603<br />higherOrderStatistic: 0.40613790<br />gene_1: Dlk1","globalHigherOrderFunction: 0.9229120<br />higherOrderStatistic: 0.25051524<br />gene_1: Dnmt3a","globalHigherOrderFunction: 0.6432469<br />higherOrderStatistic: 0.19710074<br />gene_1: Dnmt3b","globalHigherOrderFunction: 0.2118459<br />higherOrderStatistic: 0.04916625<br />gene_1: Dppa2","globalHigherOrderFunction: 0.8243511<br />higherOrderStatistic: 0.45953594<br />gene_1: Dusp6","globalHigherOrderFunction: 0.4162449<br />higherOrderStatistic: 0.09299000<br />gene_1: Eed","globalHigherOrderFunction: 0.6044004<br />higherOrderStatistic: 0.14184920<br />gene_1: Efna5","globalHigherOrderFunction: 1.4422476<br />higherOrderStatistic: 0.09256354<br />gene_1: Ep300","globalHigherOrderFunction: 1.0759136<br />higherOrderStatistic: 0.22640012<br />gene_1: Epcam","globalHigherOrderFunction: 0.2004224<br />higherOrderStatistic: 0.07180653<br />gene_1: Esam","globalHigherOrderFunction: 0.2702874<br />higherOrderStatistic: 0.07472169<br />gene_1: Ets1","globalHigherOrderFunction: 0.3726968<br />higherOrderStatistic: 0.06703078<br />gene_1: Ezh1","globalHigherOrderFunction: 0.7447732<br />higherOrderStatistic: 0.14743940<br />gene_1: Ezh2","globalHigherOrderFunction: 0.7866581<br />higherOrderStatistic: 0.17347231<br />gene_1: F2r","globalHigherOrderFunction: 0.2210712<br />higherOrderStatistic: 0.10109092<br />gene_1: Fam181b","globalHigherOrderFunction: 1.2763003<br />higherOrderStatistic: 0.18179747<br />gene_1: Fgfr1","globalHigherOrderFunction: 1.1635097<br />higherOrderStatistic: 0.18523525<br />gene_1: Fgfr2","globalHigherOrderFunction: 0.4120982<br />higherOrderStatistic: 0.11757739<br />gene_1: Fgfr3","globalHigherOrderFunction: 0.2573231<br />higherOrderStatistic: 0.16478510<br />gene_1: Fgfr4","globalHigherOrderFunction: 2.0492375<br />higherOrderStatistic: 0.67492003<br />gene_1: Foxa1","globalHigherOrderFunction: 1.3820832<br />higherOrderStatistic: 0.36651634<br />gene_1: Foxa2","globalHigherOrderFunction: 0.2989004<br />higherOrderStatistic: 0.10155143<br />gene_1: Foxc2","globalHigherOrderFunction: 0.3801812<br />higherOrderStatistic: 0.19711678<br />gene_1: Foxf1","globalHigherOrderFunction: 0.2080810<br />higherOrderStatistic: 0.10250083<br />gene_1: Fst","globalHigherOrderFunction: 1.0954941<br />higherOrderStatistic: 0.18832170<br />gene_1: Furin","globalHigherOrderFunction: 1.9601908<br />higherOrderStatistic: 0.18886922<br />gene_1: Fzd2","globalHigherOrderFunction: 0.2699868<br />higherOrderStatistic: 0.19659513<br />gene_1: Gata2","globalHigherOrderFunction: 0.6682402<br />higherOrderStatistic: 0.28064129<br />gene_1: Gata3","globalHigherOrderFunction: 0.3252258<br />higherOrderStatistic: 0.23524278<br />gene_1: Gata4","globalHigherOrderFunction: 0.5892739<br />higherOrderStatistic: 0.48264344<br />gene_1: Gata5","globalHigherOrderFunction: 0.5868233<br />higherOrderStatistic: 0.57536943<br />gene_1: Gata6","globalHigherOrderFunction: 0.2964799<br />higherOrderStatistic: 0.12822926<br />gene_1: Gmpr","globalHigherOrderFunction: 0.1923517<br />higherOrderStatistic: 0.08358814<br />gene_1: Gng3","globalHigherOrderFunction: 0.5088464<br />higherOrderStatistic: 0.45639989<br />gene_1: Gpc4","globalHigherOrderFunction: 0.2472247<br />higherOrderStatistic: 0.05398933<br />gene_1: Hapln1","globalHigherOrderFunction: 0.7676606<br />higherOrderStatistic: 0.55655938<br />gene_1: Hoxa1","globalHigherOrderFunction: 0.5557418<br />higherOrderStatistic: 0.48220467<br />gene_1: Hoxb1","globalHigherOrderFunction: 0.2486453<br />higherOrderStatistic: 0.05808945<br />gene_1: Hoxb3","globalHigherOrderFunction: 0.2538868<br />higherOrderStatistic: 0.13102669<br />gene_1: Hoxb4","globalHigherOrderFunction: 0.6247037<br />higherOrderStatistic: 0.12022547<br />gene_1: Hsf1","globalHigherOrderFunction: 0.2171866<br />higherOrderStatistic: 0.10148234<br />gene_1: Icam2","globalHigherOrderFunction: 0.3540037<br />higherOrderStatistic: 0.27844114<br />gene_1: Igf1","globalHigherOrderFunction: 0.5826600<br />higherOrderStatistic: 0.34495832<br />gene_1: Igfbp3","globalHigherOrderFunction: 0.7884119<br />higherOrderStatistic: 0.28451211<br />gene_1: Irx1","globalHigherOrderFunction: 0.5721672<br />higherOrderStatistic: 0.29033668<br />gene_1: Irx2","globalHigherOrderFunction: 0.5570035<br />higherOrderStatistic: 0.24716737<br />gene_1: Irx3","globalHigherOrderFunction: 0.5822363<br />higherOrderStatistic: 0.25272480<br />gene_1: Isl1","globalHigherOrderFunction: 1.6139119<br />higherOrderStatistic: 0.41528830<br />gene_1: Itga3","globalHigherOrderFunction: 1.0926071<br />higherOrderStatistic: 0.26209008<br />gene_1: Jarid2","globalHigherOrderFunction: 0.2531650<br />higherOrderStatistic: 0.04590774<br />gene_1: Kcng1","globalHigherOrderFunction: 0.2440271<br />higherOrderStatistic: 0.09085192<br />gene_1: Kitl","globalHigherOrderFunction: 1.2309838<br />higherOrderStatistic: 0.19727984<br />gene_1: Kmt2b","globalHigherOrderFunction: 1.4927255<br />higherOrderStatistic: 0.16053794<br />gene_1: Kmt2d","globalHigherOrderFunction: 3.1461736<br />higherOrderStatistic: 0.28946312<br />gene_1: Krt18","globalHigherOrderFunction: 0.5458453<br />higherOrderStatistic: 0.17750890<br />gene_1: Ldhb","globalHigherOrderFunction: 0.5872814<br />higherOrderStatistic: 0.24099352<br />gene_1: Lef1","globalHigherOrderFunction: 2.7900369<br />higherOrderStatistic: 0.36913043<br />gene_1: Lin28a","globalHigherOrderFunction: 1.1214063<br />higherOrderStatistic: 0.33793230<br />gene_1: Marcks","globalHigherOrderFunction: 0.6747006<br />higherOrderStatistic: 0.13422304<br />gene_1: Mcl1","globalHigherOrderFunction: 0.5950189<br />higherOrderStatistic: 0.35986323<br />gene_1: Meis1","globalHigherOrderFunction: 1.2933786<br />higherOrderStatistic: 0.25160005<br />gene_1: Meis2","globalHigherOrderFunction: 0.2137212<br />higherOrderStatistic: 0.07270293<br />gene_1: Meox1","globalHigherOrderFunction: 0.3929140<br />higherOrderStatistic: 0.06636584<br />gene_1: Mkrn1","globalHigherOrderFunction: 0.8098428<br />higherOrderStatistic: 0.16501604<br />gene_1: Mnt","globalHigherOrderFunction: 0.2506248<br />higherOrderStatistic: 0.11689242<br />gene_1: Msx1","globalHigherOrderFunction: 0.2861676<br />higherOrderStatistic: 0.11761443<br />gene_1: Msx2","globalHigherOrderFunction: 3.1714201<br />higherOrderStatistic: 0.31131568<br />gene_1: Myh9","globalHigherOrderFunction: 0.2763773<br />higherOrderStatistic: 0.09324975<br />gene_1: Nid1","globalHigherOrderFunction: 0.5563261<br />higherOrderStatistic: 0.65257377<br />gene_1: Nkx2-3","globalHigherOrderFunction: 0.6010896<br />higherOrderStatistic: 0.14392269<br />gene_1: Nr2f1","globalHigherOrderFunction: 0.3267182<br />higherOrderStatistic: 0.13614020<br />gene_1: Nrp1","globalHigherOrderFunction: 0.9860779<br />higherOrderStatistic: 0.69828736<br />gene_1: Osr1","globalHigherOrderFunction: 0.4211909<br />higherOrderStatistic: 0.49888121<br />gene_1: Otx2","globalHigherOrderFunction: 0.3281526<br />higherOrderStatistic: 0.09367532<br />gene_1: Ovol2","globalHigherOrderFunction: 1.1472874<br />higherOrderStatistic: 0.16645054<br />gene_1: Pcgf2","globalHigherOrderFunction: 0.7118114<br />higherOrderStatistic: 0.10964026<br />gene_1: Pcgf3","globalHigherOrderFunction: 0.2148857<br />higherOrderStatistic: 0.08396984<br />gene_1: Pcgf5","globalHigherOrderFunction: 0.2327335<br />higherOrderStatistic: 0.05364879<br />gene_1: Pcgf6","globalHigherOrderFunction: 0.8570165<br />higherOrderStatistic: 0.27369883<br />gene_1: Pdgfa","globalHigherOrderFunction: 0.2677245<br />higherOrderStatistic: 0.07762314<br />gene_1: Pdgfra","globalHigherOrderFunction: 0.3099086<br />higherOrderStatistic: 0.12466192<br />gene_1: Per2","globalHigherOrderFunction: 0.3357535<br />higherOrderStatistic: 0.29624618<br />gene_1: Perp","globalHigherOrderFunction: 0.2026437<br />higherOrderStatistic: 0.07304853<br />gene_1: Pim2","globalHigherOrderFunction: 0.4542080<br />higherOrderStatistic: 0.56965654<br />gene_1: Pitx1","globalHigherOrderFunction: 0.2397866<br />higherOrderStatistic: 0.05424588<br />gene_1: Plp1","globalHigherOrderFunction: 0.2147951<br />higherOrderStatistic: 0.05840434<br />gene_1: Plvap","globalHigherOrderFunction: 2.4988430<br />higherOrderStatistic: 0.40998662<br />gene_1: Podxl","globalHigherOrderFunction: 0.2460096<br />higherOrderStatistic: 0.16397672<br />gene_1: Popdc2","globalHigherOrderFunction: 0.4197340<br />higherOrderStatistic: 0.22379415<br />gene_1: Prdm1","globalHigherOrderFunction: 0.2330509<br />higherOrderStatistic: 0.08341045<br />gene_1: Prrx1","globalHigherOrderFunction: 0.4160564<br />higherOrderStatistic: 0.17780336<br />gene_1: Prrx2","globalHigherOrderFunction: 0.2792623<br />higherOrderStatistic: 0.10058222<br />gene_1: Ptn","globalHigherOrderFunction: 0.4537272<br />higherOrderStatistic: 0.09915062<br />gene_1: Ramp2","globalHigherOrderFunction: 0.3145716<br />higherOrderStatistic: 0.13081957<br />gene_1: Rgl1","globalHigherOrderFunction: 0.2221189<br />higherOrderStatistic: 0.18269143<br />gene_1: Runx1","globalHigherOrderFunction: 1.1842563<br />higherOrderStatistic: 0.12340876<br />gene_1: Setd1a","globalHigherOrderFunction: 1.0084242<br />higherOrderStatistic: 0.16965359<br />gene_1: Setd1b","globalHigherOrderFunction: 0.7569050<br />higherOrderStatistic: 0.09275774<br />gene_1: Setd2","globalHigherOrderFunction: 0.3426839<br />higherOrderStatistic: 0.14286593<br />gene_1: Sfrp1","globalHigherOrderFunction: 0.2399858<br />higherOrderStatistic: 0.09174292<br />gene_1: Sfrp2","globalHigherOrderFunction: 1.6203130<br />higherOrderStatistic: 0.67710109<br />gene_1: Shh","globalHigherOrderFunction: 1.1630577<br />higherOrderStatistic: 0.75174986<br />gene_1: Shisa2","globalHigherOrderFunction: 0.4316049<br />higherOrderStatistic: 0.34742425<br />gene_1: Six1","globalHigherOrderFunction: 0.4237789<br />higherOrderStatistic: 0.10223663<br />gene_1: Smarcd3","globalHigherOrderFunction: 0.2810399<br />higherOrderStatistic: 0.10097882<br />gene_1: Smim1","globalHigherOrderFunction: 0.7860524<br />higherOrderStatistic: 0.34652477<br />gene_1: Smoc2","globalHigherOrderFunction: 0.3663647<br />higherOrderStatistic: 0.07626656<br />gene_1: Snai1","globalHigherOrderFunction: 0.2388555<br />higherOrderStatistic: 0.11384079<br />gene_1: Socs2","globalHigherOrderFunction: 1.4146298<br />higherOrderStatistic: 0.39927391<br />gene_1: Sox2","globalHigherOrderFunction: 2.1829706<br />higherOrderStatistic: 0.41994711<br />gene_1: Sox4","globalHigherOrderFunction: 0.5467631<br />higherOrderStatistic: 0.42476491<br />gene_1: Sp5","globalHigherOrderFunction: 0.4747255<br />higherOrderStatistic: 0.10639253<br />gene_1: Suz12","globalHigherOrderFunction: 0.4780897<br />higherOrderStatistic: 0.56488052<br />gene_1: T","globalHigherOrderFunction: 0.5859408<br />higherOrderStatistic: 0.34040256<br />gene_1: Tagln","globalHigherOrderFunction: 0.8738609<br />higherOrderStatistic: 0.46242378<br />gene_1: Tbx1","globalHigherOrderFunction: 0.4977646<br />higherOrderStatistic: 0.45279942<br />gene_1: Tbx3","globalHigherOrderFunction: 0.2095726<br />higherOrderStatistic: 0.08365472<br />gene_1: Tbx4","globalHigherOrderFunction: 1.6886508<br />higherOrderStatistic: 0.14457352<br />gene_1: Tcf7l1","globalHigherOrderFunction: 2.3593472<br />higherOrderStatistic: 0.12042512<br />gene_1: Tead2","globalHigherOrderFunction: 0.3203004<br />higherOrderStatistic: 0.05147432<br />gene_1: Tet1","globalHigherOrderFunction: 0.2611588<br />higherOrderStatistic: 0.06210934<br />gene_1: Tet2","globalHigherOrderFunction: 1.2984822<br />higherOrderStatistic: 0.09545655<br />gene_1: Tet3","globalHigherOrderFunction: 0.5071661<br />higherOrderStatistic: 0.26578096<br />gene_1: Thbs1","globalHigherOrderFunction: 0.2961208<br />higherOrderStatistic: 0.11300256<br />gene_1: Tinagl1","globalHigherOrderFunction: 1.3084663<br />higherOrderStatistic: 0.26947466<br />gene_1: Tjp2","globalHigherOrderFunction: 0.2734406<br />higherOrderStatistic: 0.12077107<br />gene_1: Ttn","globalHigherOrderFunction: 0.3190321<br />higherOrderStatistic: 0.06778402<br />gene_1: Usp28","globalHigherOrderFunction: 0.6052358<br />higherOrderStatistic: 0.09406618<br />gene_1: Wdr5","globalHigherOrderFunction: 0.3358199<br />higherOrderStatistic: 0.17229958<br />gene_1: Wnt5a","globalHigherOrderFunction: 0.2203004<br />higherOrderStatistic: 0.10492410<br />gene_1: Wnt5b","globalHigherOrderFunction: 1.1622405<br />higherOrderStatistic: 0.12082808<br />gene_1: Xist","globalHigherOrderFunction: 0.7440820<br />higherOrderStatistic: 0.11892960<br />gene_1: Zfp444","globalHigherOrderFunction: 0.5955189<br />higherOrderStatistic: 0.13012772<br />gene_1: Zfp57"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.228310502283104,"r":7.3059360730593621,"b":40.182648401826491,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.043398312271026723,3.3203735348361243],"tickmode":"array","ticktext":["1","2","3"],"tickvals":[1,2.0000000000000004,3],"categoryorder":"array","categoryarray":["1","2","3"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Mean across all cells","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.010615637090506544,0.78704197105575135],"tickmode":"array","ticktext":["0.2","0.4","0.6"],"tickvals":[0.20000000000000001,0.40000000000000002,0.60000000000000009],"categoryorder":"array","categoryarray":["0.2","0.4","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"scHOT statistic for local weightedMean","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"52705e6a2cb8":{"x":{},"y":{},"label":{},"type":"scatter"}},"cur_data":"52705e6a2cb8","visdat":{"52705e6a2cb8":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Set up the permutation testing schema. For the purposes of this workshop we set a low number of permutations over a low number of genes in the testing scaffold, you may want to change this as you work through the workshop yourself. The testing will take a few minutes to run, here with the parallel parameters that were set at the beginning of this document.</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_setPermutationScaffold.html">scHOT_setPermutationScaffold</a></span><span class="op">(</span><span class="va">scHOT_spatial</span>,</span>
+<span>                                              numberPermutations <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>                                              numberScaffold <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_performPermutationTest.html">scHOT_performPermutationTest</a></span><span class="op">(</span></span>
+<span>    <span class="va">scHOT_spatial</span>,</span>
+<span>    verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Permutation testing combination 40 of 165...
+Permutation testing combination 150 of 165...</code></pre>
+</div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"scHOT_output"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DataFrame with 165 rows and 9 columns
+             gene_1 globalHigherOrderFunction            higherOrderSequence
+        &lt;character&gt;                  &lt;matrix&gt;                  &lt;NumericList&gt;
+Acvr1         Acvr1                  0.216666 0.251205,0.275076,0.286668,...
+Acvr2a       Acvr2a                  0.375776 0.398236,0.376223,0.361763,...
+Ahnak         Ahnak                  0.976418    1.23931,1.22101,1.19278,...
+Akr1c19     Akr1c19                  0.744070 0.681732,0.622183,0.625407,...
+Aldh1a2     Aldh1a2                  0.245981 0.117491,0.118105,0.121221,...
+...             ...                       ...                            ...
+Wnt5a         Wnt5a                  0.335820 0.282418,0.280240,0.268180,...
+Wnt5b         Wnt5b                  0.220300 0.262440,0.321449,0.368172,...
+Xist           Xist                  1.162241    1.18893,1.17123,1.18238,...
+Zfp444       Zfp444                  0.744082 0.529888,0.531771,0.538540,...
+Zfp57         Zfp57                  0.595519 0.853046,0.844188,0.838651,...
+        higherOrderStatistic numberPermutations storePermutations
+                   &lt;numeric&gt;          &lt;numeric&gt;         &lt;logical&gt;
+Acvr1              0.0750954                  0              TRUE
+Acvr2a             0.0665143                  0              TRUE
+Ahnak              0.3319897                  0              TRUE
+Akr1c19            0.1673342                  0              TRUE
+Aldh1a2            0.1827836                  0              TRUE
+...                      ...                ...               ...
+Wnt5a               0.172300                  0              TRUE
+Wnt5b               0.104924                 50              TRUE
+Xist                0.120828                  0              TRUE
+Zfp444              0.118930                  0              TRUE
+Zfp57               0.130128                  0              TRUE
+                             permutations pvalPermutations FDRPermutations
+                            &lt;NumericList&gt;        &lt;numeric&gt;       &lt;numeric&gt;
+Acvr1                                  NA               NA              NA
+Acvr2a                                 NA               NA              NA
+Ahnak                                  NA               NA              NA
+Akr1c19                                NA               NA              NA
+Aldh1a2                                NA               NA              NA
+...                                   ...              ...             ...
+Wnt5a                                  NA               NA              NA
+Wnt5b   0.0341284,0.0510860,0.0503153,...        0.0196078       0.0231579
+Xist                                   NA               NA              NA
+Zfp444                                 NA               NA              NA
+Zfp57                                  NA               NA              NA</code></pre>
+</div>
+</div>
+<p>After the permutation test we can estimate the P-values across all genes.</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_plotPermutationDistributions.html">scHOT_plotPermutationDistributions</a></span><span class="op">(</span><span class="va">scHOT_spatial</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `permstatsDF$globalHigherOrderFunction` is discouraged.
+ℹ Use `globalHigherOrderFunction` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `permstatsDF$stat` is discouraged.
+ℹ Use `stat` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 143 rows containing missing values (`geom_scattermore()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scHOT_spatial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scHOT/man/scHOT_estimatePvalues.html">scHOT_estimatePvalues</a></span><span class="op">(</span><span class="va">scHOT_spatial</span>,</span>
+<span>                                       nperm_estimate <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>                                       maxDist <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead
+no permutations found within given maxDist... using all permutations instead</code></pre>
+</div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"scHOT_output"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DataFrame with 165 rows and 14 columns
+             gene_1 globalHigherOrderFunction            higherOrderSequence
+        &lt;character&gt;                  &lt;matrix&gt;                  &lt;NumericList&gt;
+Acvr1         Acvr1                  0.216666 0.251205,0.275076,0.286668,...
+Acvr2a       Acvr2a                  0.375776 0.398236,0.376223,0.361763,...
+Ahnak         Ahnak                  0.976418    1.23931,1.22101,1.19278,...
+Akr1c19     Akr1c19                  0.744070 0.681732,0.622183,0.625407,...
+Aldh1a2     Aldh1a2                  0.245981 0.117491,0.118105,0.121221,...
+...             ...                       ...                            ...
+Wnt5a         Wnt5a                  0.335820 0.282418,0.280240,0.268180,...
+Wnt5b         Wnt5b                  0.220300 0.262440,0.321449,0.368172,...
+Xist           Xist                  1.162241    1.18893,1.17123,1.18238,...
+Zfp444       Zfp444                  0.744082 0.529888,0.531771,0.538540,...
+Zfp57         Zfp57                  0.595519 0.853046,0.844188,0.838651,...
+        higherOrderStatistic numberPermutations storePermutations
+                   &lt;numeric&gt;          &lt;numeric&gt;         &lt;logical&gt;
+Acvr1              0.0750954                  0              TRUE
+Acvr2a             0.0665143                  0              TRUE
+Ahnak              0.3319897                  0              TRUE
+Akr1c19            0.1673342                  0              TRUE
+Aldh1a2            0.1827836                  0              TRUE
+...                      ...                ...               ...
+Wnt5a               0.172300                  0              TRUE
+Wnt5b               0.104924                 50              TRUE
+Xist                0.120828                  0              TRUE
+Zfp444              0.118930                  0              TRUE
+Zfp57               0.130128                  0              TRUE
+                             permutations pvalPermutations FDRPermutations
+                            &lt;NumericList&gt;        &lt;numeric&gt;       &lt;numeric&gt;
+Acvr1                                  NA               NA              NA
+Acvr2a                                 NA               NA              NA
+Ahnak                                  NA               NA              NA
+Akr1c19                                NA               NA              NA
+Aldh1a2                                NA               NA              NA
+...                                   ...              ...             ...
+Wnt5a                                  NA               NA              NA
+Wnt5b   0.0341284,0.0510860,0.0503153,...        0.0196078       0.0231579
+Xist                                   NA               NA              NA
+Zfp444                                 NA               NA              NA
+Zfp57                                  NA               NA              NA
+        numberPermutationsEstimated globalLowerRangeEstimated
+                          &lt;integer&gt;                 &lt;numeric&gt;
+Acvr1                           200                  0.220300
+Acvr2a                          100                  0.286168
+Ahnak                          1100                  0.220300
+Akr1c19                        1100                  0.220300
+Aldh1a2                         200                  0.220300
+...                             ...                       ...
+Wnt5a                           150                  0.270287
+Wnt5b                           200                  0.220300
+Xist                             50                  1.184256
+Zfp444                         1100                  0.220300
+Zfp57                            50                  0.507166
+        globalUpperRangeEstimated pvalEstimated FDREstimated
+                        &lt;numeric&gt;     &lt;numeric&gt;    &lt;numeric&gt;
+Acvr1                     0.29890   0.100000000    0.1269231
+Acvr2a                    0.29890   0.290000000    0.3190000
+Ahnak                     3.17142   0.000908265    0.0149864
+Akr1c19                   3.17142   0.016363636    0.0272727
+Aldh1a2                   0.29890   0.004975124    0.0183333
+...                           ...           ...          ...
+Wnt5a                    0.298900    0.00662252    0.0183333
+Wnt5b                    0.298900    0.00497512    0.0183333
+Xist                     1.184256    0.14000000    0.1673913
+Zfp444                   3.171420    0.18727273    0.2145833
+Zfp57                    0.507166    0.01960784    0.0272727</code></pre>
+</div>
+</div>
+<p>We can now examine the spatial expression of the 5 most significant genes, both in our scHOT object and over our original spe object.</p>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">output_sorted</span> <span class="op">&lt;-</span> <span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"scHOT_output"</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="fu">slot</span><span class="op">(</span><span class="va">scHOT_spatial</span>,</span>
+<span>                                                                <span class="st">"scHOT_output"</span><span class="op">)</span><span class="op">$</span><span class="va">pvalEstimated</span><span class="op">)</span>,<span class="op">]</span></span>
+<span><span class="va">topgenes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">output_sorted</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDim</a></span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"spatialCoords"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/reducedDims.html">reducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">scHOT_spatial</span><span class="op">)</span>,<span class="op">]</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">topgene</span> <span class="kw">in</span> <span class="va">topgenes</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">g_spe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">spe</span>, <span class="st">"spatialCoords"</span>, colour_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">topgene</span><span class="op">)</span>, point_size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">g_scHOT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scater/man/plotReducedDim.html">plotReducedDim</a></span><span class="op">(</span><span class="va">scHOT_spatial</span>, <span class="st">"spatialCoords"</span>, colour_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">topgene</span><span class="op">)</span>, point_size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                           by_exprs_values <span class="op">=</span> <span class="st">"expression"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">g_all</span> <span class="op">&lt;-</span> <span class="va">g_scHOT</span> <span class="op">+</span> <span class="va">g_spe</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">g_all</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-17-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-17-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Lohoff_2022_files/figure-html/unnamed-chunk-17-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here we are noting the genes that are found to have the most statistically significant spatial variation in their local mean expression. These genes point to specific patterns that govern the development of individual parts of the gut tube.</p>
+<p><strong>Advanced/Extended Questions</strong></p>
+<ol type="1">
+<li>How would you perform such testing over multiple distinct samples?</li>
+<li>scHOT is developed with all higher order testing in mind, use the associated <a href="http://www.bioconductor.org/packages/release/bioc/html/scHOT.html">vignette</a> to get towards assessing changes in variation or correlation structure in space.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## try some code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
