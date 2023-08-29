@@ -7,6 +7,12 @@ format:
 
 This page contains examples of how to different types of analysis. We have sorted these by technology, however we recommend focusing more on the questions that can be asked, rather than the technologies that were use to address them.
 
+<style>
+table {
+  font-size: 9pt;
+  padding: 1px;
+}
+</style>
 
 | Disease | Technology | Title | Segmentation | Alignment | Clustering | Colocalisation | Microenvironments | Patient Classification |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
