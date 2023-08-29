@@ -94,6 +94,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/USydLogo.svg" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Spatial omics analysis</span>
     </a>
@@ -232,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="load-packages" class="level2"><h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://SydneyBioX.github.io/StatialBioc2023/">StatialBioc2023</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sydneybiox.github.io/Statial">Statial</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Statial</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellispatrick.github.io/spicyR/">spicyR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellispatrick.github.io/lisaClust/">lisaClust</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sydneybiox.github.io/ClassifyR/">ClassifyR</a></span><span class="op">)</span></span>
@@ -385,7 +387,7 @@ imgData names(1): sample_id</code></pre>
 <p>The <code>Kontextual</code> function accepts a <code>SingleCellExperiment</code> object, or a single image, or list of images from a <code>SingleCellExperiment</code> object, this gets passed into the <code>cells</code> argument. The two cell types which will be evaluated are specified in the <code>to</code> and <code>from</code> arguments. A parent population must also be specified in the <code>parent</code> argument, note the parent cell population must include the <code>to</code> cell type. The argument <code>r</code> will specify the radius which the cell relationship will be evaluated on. <code>Kontextual</code> supports parallel processing, the number of cores can be specified using the <code>cores</code> argument. <code>Kontextual</code> can take a single value or multiple values for each argument and will test all combinations of the arguments specified.</p>
 <p>We can calculate these relationships for a single radius.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p53_Kontextual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/Kontextual.html">Kontextual</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p53_Kontextual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/Kontextual.html">Kontextual</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  image <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>  r <span class="op">=</span> <span class="fl">50</span>,</span>
@@ -405,7 +407,7 @@ imgData names(1): sample_id</code></pre>
 </div>
 <p>The <code>kontextCurve</code> calculates the L-function value and Kontextual values over a range of radii. While <code>kontextPlot</code> plots these values. If the points lie above the red line (expected pattern) then localisation is indicated for that radius, if the points lie below the red line then dispersion is indicated. As seen in the following plot Kontextual is able to correctly identify localisation between p53+ tumour cells and immune cells in the example image for a certain range of radii. The original L-function is not able to identify localisation at any value of radii.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">curves</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/kontextCurve.html">kontextCurve</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">curves</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/kontextCurve.html">kontextCurve</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  image <span class="op">=</span> <span class="st">"6"</span>,</span>
 <span>  from <span class="op">=</span> <span class="st">"p53_Tumour"</span>,</span>
@@ -416,7 +418,7 @@ imgData names(1): sample_id</code></pre>
 <span>  cores <span class="op">=</span> <span class="va">nCores</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/kontextPlot.html">kontextPlot</a></span><span class="op">(</span><span class="va">curves</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/Statial/man/kontextPlot.html">kontextPlot</a></span><span class="op">(</span><span class="va">curves</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Keren_2018_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="576"></p>
 </div>
@@ -424,7 +426,7 @@ imgData names(1): sample_id</code></pre>
 <p>Alternatively all pairwise cell relationships and their corresponding parents in the dataset can be tested. A data frame with all pairwise combinations can be creating using the <code>parentCombinations</code> function. This function takes in a vector of all the cells, as well as all the parent vectors set up earlier. As shown below the output is a data frame specifying the <code>to</code>, <code>from</code>, and <code>parent</code> arguments for <code>Kontextual</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get all relationships between cell types and their parents</span></span>
-<span><span class="va">parentDf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/parentCombinations.html">parentCombinations</a></span><span class="op">(</span></span>
+<span><span class="va">parentDf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/parentCombinations.html">parentCombinations</a></span><span class="op">(</span></span>
 <span>  all <span class="op">=</span> <span class="va">all</span>,</span>
 <span>  <span class="va">tumour</span>,</span>
 <span>  <span class="va">bcells</span>,</span>
@@ -440,7 +442,7 @@ imgData names(1): sample_id</code></pre>
 <p>Rather than specifying <code>to</code>, <code>from</code>, and <code>parent</code> in Kontextual, the output from <code>parentCombinations</code> can be input into <code>Kontextual</code> using the <code>parentDf</code> argument, to examine all pairwise relationships in the dataset. This chunk will take a signficant amount of time to run (~20 minutes).</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Running Kontextual on all relationships across all images.</span></span>
-<span><span class="va">kerenKontextual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/Kontextual.html">Kontextual</a></span><span class="op">(</span></span>
+<span><span class="va">kerenKontextual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/Kontextual.html">Kontextual</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  parentDf <span class="op">=</span> <span class="va">parentDf</span>,</span>
 <span>  r <span class="op">=</span> <span class="fl">50</span>,</span>
@@ -492,7 +494,7 @@ imgData names(1): sample_id</code></pre>
 <p>In addition to this, the Kontextual results must be converted from a <code>data.frame</code> to a wide <code>matrix</code>, this can be done using <code>prepMatrix</code>. Note, to extract the original L-function values, specify <code>column = "original"</code> in <code>prepMatrix</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Converting Kontextual result into data matrix</span></span>
-<span><span class="va">kontextMat</span> <span class="op">=</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/prepMatrix.html">prepMatrix</a></span><span class="op">(</span><span class="va">kerenKontextual</span><span class="op">)</span></span>
+<span><span class="va">kontextMat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/prepMatrix.html">prepMatrix</a></span><span class="op">(</span><span class="va">kerenKontextual</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Ensuring rownames of kontextMat match up with rownames of the survival vector </span></span>
 <span><span class="va">kontextMat</span> <span class="op">=</span> <span class="va">kontextMat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">kerenSurv</span><span class="op">)</span>, <span class="op">]</span></span>
@@ -547,16 +549,16 @@ CD4_T_cell__CD8_T_cell__tcells               CD4_T_cell__CD8_T_cell__tcells</cod
 <section id="continuous-cell-state-changes-within-a-single-image." class="level3"><h3 class="anchored" data-anchor-id="continuous-cell-state-changes-within-a-single-image.">Continuous cell state changes within a single image.</h3>
 <p>The first step in analysing these changes is to calculate the spatial proximity (<code>getDistances</code>) and abundance (<code>getAbundances</code>) of each cell to every cell type. These values will then be stored in the <code>reducedDims</code> slot of the <code>SpatialExperiment</code> object under the names <code>distances</code> and <code>abundances</code> respectively.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe_Keren_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/getDistances.html">getDistances</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span>,</span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe_Keren_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/getDistances.html">getDistances</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span>,</span>
 <span>                    maxDist <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">spe_Keren_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/getAbundances.html">getAbundances</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span>,</span>
+<span><span class="va">spe_Keren_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/getAbundances.html">getAbundances</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span>,</span>
 <span>                     r <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First, let’s examine the same effect observed earlier with Kontextual. To avoid redefining cell types we’ll examine the distance between p53-positive tumour cells and macrophages in the context of total keratin/tumour cells for image 6.</p>
 <p>Statial provides two main functions to assess this relationship - <code>calcStateChanges</code> and <code>plotStateChanges</code>. We can use <code>calcStateChanges</code> to examine the relationship between 2 cell types for 1 marker in a specific image. Similar to <code>Kontextual</code>, we can specify the two cell types with the <code>to</code> and <code>from</code> arguments, and the marker of interest with the <code>marker</code> argument. We can appreciate that the <code>fdr</code> statistic for this relationship is significant, and with a negative <code>coef</code>, or coefficient value, indicating that the expression of p53 in keratin/tumour cells decreases as distance from macrophages increases.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stateChanges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/calcStateChanges.html">calcStateChanges</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stateChanges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/getStateChanges.html">calcStateChanges</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"distances"</span>,</span>
 <span>  image <span class="op">=</span> <span class="st">"6"</span>,</span>
@@ -576,7 +578,7 @@ CD4_T_cell__CD8_T_cell__tcells               CD4_T_cell__CD8_T_cell__tcells</cod
 <p>Through this analysis, we can observe that keratin/tumour cells closer to a group of macrophages tend to have higher expression of p53, as observed in the first graph. This relationship is quantified with the second graph, showing an overall decrease of p53 expression in keratin/tumour cells as distance to macrophages increase.</p>
 <p>These results allow us to essentially arrive at the same result as Kontextual, which calculated a localisation between p53+ keratin/tumour cells and macrophages in the wider context of keratin/tumour cells.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/plotStateChanges.html">plotStateChanges</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/plotStateChanges.html">plotStateChanges</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"distances"</span>,</span>
 <span>  image <span class="op">=</span> <span class="st">"6"</span>,</span>
@@ -614,7 +616,7 @@ CD4_T_cell__CD8_T_cell__tcells               CD4_T_cell__CD8_T_cell__tcells</cod
 </section><section id="continuous-cell-state-changes-across-all-images." class="level3"><h3 class="anchored" data-anchor-id="continuous-cell-state-changes-across-all-images.">Continuous cell state changes across all images.</h3>
 <p>Beyond looking at single cell-to-cell interactions for a single image, we can also look at all interactions across all images. The <code>calcStateChanges</code> function provided by Statial can be expanded for this exact purpose - by not specifying cell types, a marker, or an image, <code>calcStateChanges</code> will examine the most significant correlations between distance and marker expression across the entire dataset. Here, we’ve calculated all state changes across all images in case you would like to have a play, but first we’ll be taking a closer examination at the most significant interactions found within image 6 of the Keren et al.&nbsp;dataset.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stateChanges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/calcStateChanges.html">calcStateChanges</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stateChanges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/getStateChanges.html">calcStateChanges</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"distances"</span>,</span>
 <span>  minCells <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
@@ -651,7 +653,7 @@ CD4_T_cell__CD8_T_cell__tcells               CD4_T_cell__CD8_T_cell__tcells</cod
 <p>We can examine some of these interactions further with the <code>plotStateChanges</code> function. Taking a closer examination of the relationship between macrophages and keratin/tumour HLA class I expression, the plot below shows us a clear visual correlation - as macrophage density increases, keratin/tumour cells increase their expression HLA class I.</p>
 <p>Biologically, HLA Class I is a ligand which exists on all nucleated cells, tasked with presenting internal cell antigens for recognition by the immune system, marking aberrant cells for destruction by either CD8+ T cells or NK cells.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/plotStateChanges.html">plotStateChanges</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/plotStateChanges.html">plotStateChanges</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"distances"</span>,</span>
 <span>  image <span class="op">=</span> <span class="st">"6"</span>,</span>
@@ -726,7 +728,7 @@ CD4_T_cell__CD8_T_cell__tcells               CD4_T_cell__CD8_T_cell__tcells</cod
 </ol>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/plotStateChanges.html">plotStateChanges</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/plotStateChanges.html">plotStateChanges</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"distances"</span>,</span>
 <span>  image <span class="op">=</span> <span class="st">"35"</span>,</span>
@@ -763,12 +765,12 @@ CD4_T_cell__CD8_T_cell__tcells               CD4_T_cell__CD8_T_cell__tcells</cod
 <p>To circumvent this problem, Statial provides a function that predicts the probability that a cell is any particular cell type - <code>calcContamination</code>. <code>calcContamination</code> returns a dataframe of probabilities demarcating the chance of a cell being any particular cell type. This dataframe is stored under <code>contaminations</code> in the <code>reducedDim</code> slot of the <code>SpatialExperiment</code> object. It also provides the <code>rfMainCellProb</code> column, which provides the probability that a cell is indeed the cell type it has been designated. E.g. For a cell designated as a CD8+ T cell, rfMainCellProb could give a 80% chance that the cell is indeed CD8+ T cell, due to contamination.</p>
 <p>We can then introduce these probabilities as covariates into our linear model by setting <code>contamination = TRUE</code> as a parameter in our <code>calcStateChanges</code> function. However, this is not a perfect solution for the issue of contamination. As we can see, despite factoring in contamination into our linear model, the correlation between B cell density and CD20 expression in CD4+ T cells remains one of the most significant interactions in our model.</p>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe_Keren_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/calcContamination.html">calcContamination</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">spe_Keren_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/calcContamination.html">calcContamination</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Growing trees.. Progress: 32%. Estimated remaining time: 1 minute, 5 seconds.
 Growing trees.. Progress: 68%. Estimated remaining time: 29 seconds.</code></pre>
 </div>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stateChangesCorrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/calcStateChanges.html">calcStateChanges</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stateChangesCorrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/getStateChanges.html">calcStateChanges</a></span><span class="op">(</span></span>
 <span>  cells <span class="op">=</span> <span class="va">spe_Keren_2018</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"distances"</span>,</span>
 <span>  minCells <span class="op">=</span> <span class="fl">100</span>,</span>
@@ -856,7 +858,7 @@ Growing trees.. Progress: 68%. Estimated remaining time: 29 seconds.</code></pre
 <p>Similiar to <code>Kontextual</code>, we can run a similar survival analysis using our state changes results. Here, <code>prepMatrix</code> extracts the coefficients, or the <code>coef</code> column of <code>stateChanges</code> by default. To use the t values instead, specify <code>column = "tval"</code> in the <code>prepMatrix</code> function.</p>
 <div class="cell">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Preparing features for Statial</span></span>
-<span><span class="va">stateMat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/prepMatrix.html">prepMatrix</a></span><span class="op">(</span><span class="va">stateChanges</span><span class="op">)</span></span>
+<span><span class="va">stateMat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/prepMatrix.html">prepMatrix</a></span><span class="op">(</span><span class="va">stateChanges</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Ensuring rownames of stateMat match up with rownames of the survival vector</span></span>
 <span><span class="va">stateMat</span> <span class="op">&lt;-</span> <span class="va">stateMat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">kerenSurv</span><span class="op">)</span>, <span class="op">]</span></span>
@@ -956,7 +958,7 @@ length is not a multiple of split variable</code></pre>
 </section><section id="changes-in-marker-means" class="level3"><h3 class="anchored" data-anchor-id="changes-in-marker-means">Changes in marker means</h3>
 <p><code>Statial</code> provides functionality to identify the average marker expression of a given cell type in a given region, using the <code>getMarkerMeans</code> function. Similar to the analysis above, these features can also be used for survival analysis.</p>
 <div class="cell">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cellTypeRegionMeans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sydneybiox.github.io/Statial/reference/getMarkerMeans.html">getMarkerMeans</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span>,</span>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cellTypeRegionMeans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Statial/man/getMarkerMeans.html">getMarkerMeans</a></span><span class="op">(</span><span class="va">spe_Keren_2018</span>,</span>
 <span>                              imageID <span class="op">=</span> <span class="st">"imageID"</span>,</span>
 <span>                              cellType <span class="op">=</span> <span class="st">"cellType"</span>,</span>
 <span>                              region <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span>
