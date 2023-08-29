@@ -1,0 +1,350 @@
+---
+title: "Early mouse organogenesis"
+execute:
+  freeze: auto 
+format:
+  html:
+    code-link: true
+---
+
+# Introduction
+
+In the following we will conductor an analysis of  [Lohoff et al's](https://www.nature.com/articles/s41587-021-01006-2) study of early mouse organogenesis that was performed using a seqFISH. This analysis was adapted from a workshop that Shila and Ellis deliver as an introduction to spatial data analysis. 
+
+
+# Loading R packages and setting parameters
+
+```{r}
+suppressPackageStartupMessages({
+  # Data packages
+  library(STexampleData)
+  library(imcdatasets)
+  
+  # Packages from scdney
+  library(scHOT)
+
+  # Extra packages needed for workshop
+  library(ggplot2)
+  library(scater)
+  library(scuttle)
+  library(batchelor)
+  library(patchwork)
+  library(plotly)
+  library(RColorBrewer)
+})
+
+# We can use the following to increase computational speed.
+# If you feel confident in the amount of CPU cores and/or memory that you have 
+# access to, feel free to increase nCores.
+
+nCores <- 1 
+BPPARAM <- simpleSeg:::generateBPParam(nCores)
+
+# The following will improve the aesthetics of some of the plots that we will
+# generate.
+theme_set(theme_classic())
+source("celltype_colours.R")
+```
+
+# Part 1: Data structures and exploratory data analysis
+
+Here we will download the dataset, examine the structure and perform some 
+exploratory analyses. We will use a subset of data that is made available from the [`STExampleData`](https://bioconductor.org/packages/release/data/experiment/html/STexampleData.html)
+    package. Downloading this might take a few moments and you may be prompted
+to install some additional packages.
+
+
+Here we download the seqFISH mouse embryo data. This is a `SpatialExperiment` 
+object, which extends the `SingleCellExperiment` object.
+
+```{r}
+spe <- STexampleData::seqFISH_mouseEmbryo()
+spe
+```
+
+We can use functions designed for `SingleCellExperiment` objects in the 
+`scater` package for plotting via the `reducedDim` slot. We multiply the spatial
+coordinates by a matrix to flip the y-axis and ensure we fix the aspect ratio.
+
+```{r}
+spe <- logNormCounts(spe)
+coord_transform <- matrix(c(1,0,0,-1), 2, 2, byrow = TRUE)
+reducedDim(spe, "spatialCoords") <- spatialCoords(spe) %*% coord_transform
+plotReducedDim(spe, "spatialCoords", colour_by = c("Sox2"), point_size = 1) +
+  coord_fixed()
+```
+
+**Questions**
+
+1.  How many cells are in this data?
+2.  How many genes?
+3.  Plot gene expression mapping point size to the cell area.
+
+```{r}
+# try to answer the above question using the spe object. 
+# you may want to check the SingleCellExperiment vignette.
+# https://bioconductor.org/packages/3.17/bioc/vignettes/SingleCellExperiment/inst/doc/intro.html
+
+
+```
+
+We can perform a typical gene-expression based analysis for this data. Later 
+in part two we will perform some specific analytical techniques, but for now 
+let's explore the dataset and use methods designed for single cell data.
+
+Dimensionality reduction using PCA, batch correction across tiles using the
+`batchelor` package, followed by UMAP and plotting.
+
+```{r}
+spe <- runPCA(spe)
+
+b.out <- batchelor::batchCorrect(spe, batch = spe$pos, assay.type = "logcounts", PARAM=FastMnnParam(d=20))
+reducedDim(spe, "FastMnn") <- reducedDim(b.out, "corrected")
+spe <- runUMAP(spe, dimred = "FastMnn")
+spe
+
+g_celltype_umap <- plotReducedDim(spe, "UMAP", colour_by = "celltype_mapped_refined") + 
+  scale_colour_manual(values = celltype_colours)
+g_celltype_umap
+
+plotReducedDim(spe, "UMAP", colour_by = "Sox2")
+
+g_celltype_spatial <- plotReducedDim(spe, "spatialCoords", colour_by = "celltype_mapped_refined") + 
+  scale_colour_manual(values = celltype_colours) + 
+  coord_fixed()
+
+g_all <- g_celltype_spatial + theme(legend.position = "none") + g_celltype_umap
+g_all
+```
+
+**Advanced/Extension Question**
+
+1.  What considerations need to be made for batch correction of spatial data?
+What assumptions are being made and/or broken? How could you check this?
+2.  Check out the [`ggiraph`](https://davidgohel.github.io/ggiraph/index.html) 
+package for extending the `g_all` object to an interactive plot with a 
+tooltip that links the spatial and UMAP coordinate systems. (Hint: This
+may involve generating a new ggplot object outside of the `plotReducedDim`
+function.)
+
+```{r}
+# try to examine answer the above questions using the spe object. 
+# you may want to set up some small simulation..
+
+
+```
+
+
+
+
+# Part 2: scHOT analysis of the developing brain
+
+Here we will ask which gene patterns we observe to be changing across the
+spe$gutRegion cell type in space. Note that we want to assess
+the anatomical region corresponding to the anterior end of the developing gut
+developing brain so we will first subset the cells using the spatial 
+coordinates. We can check what we have selected by plotting.
+
+```{r}
+spe$gutRegion <- spe$celltype_mapped_refined == "Gut tube" &
+  reducedDim(spe, "spatialCoords")[,1] < -0.5
+
+plotReducedDim(spe, "spatialCoords", colour_by = "gutRegion") + 
+  coord_fixed() + 
+  scale_colour_manual(values = c("TRUE" = "red", "FALSE" = "grey"))
+```
+
+Let's subset the data to only these cells and continue with our scHOT analysis.
+
+```{r}
+spe_gut <- spe[,spe$gutRegion]
+spe_gut
+```
+
+We select genes with at least some proportion of expressed cells for testing, 
+and create the `scHOT` object.
+
+```{r}
+hist(rowMeans(counts(spe_gut)>0), 40)
+
+gene_to_test <- as.matrix(c(rownames(spe_gut[rowMeans(counts(spe_gut)>0) > 0.2,])))
+length(gene_to_test)
+
+rownames(gene_to_test) <- apply(gene_to_test, 1, paste0, collapse = "_")
+head(gene_to_test)
+
+scHOT_spatial <- scHOT_buildFromSCE(spe_gut,
+                                    assayName = "logcounts",
+                                    positionType = "spatial",
+                                    positionColData = c("x_global_affine", "y_global_affine"))
+
+scHOT_spatial
+```
+
+We now add the testing scaffold to the `scHOT` object, and set the local
+weight matrix for testing, with a choice of span of 0.1 (the proportion
+of cells to weight around each cell).  We can speed up computation by not
+requiring the weight matrix correspond to every individual cell, but instead a
+random selection among all the cells using the `thin` function.
+
+```{r}
+scHOT_spatial <- scHOT_addTestingScaffold(scHOT_spatial, gene_to_test)
+head(scHOT_spatial@testingScaffold)
+
+scHOT_spatial <- scHOT_setWeightMatrix(scHOT_spatial, span = 0.2)
+scHOT_spatial@weightMatrix <- thin(scHOT_spatial@weightMatrix, n = 50)
+
+dim(slot(scHOT_spatial, "weightMatrix"))
+```
+
+For a given cell we can visually examine the local weight given by the span
+parameter.
+
+```{r}
+cellID = 10
+
+df <- cbind(as.data.frame(colData(scHOT_spatial)),
+      W = slot(scHOT_spatial, "weightMatrix")[cellID,])
+
+ggplot(df,
+       aes(x = x_global_affine, y = -y_global_affine)) +
+  geom_point(aes(colour = W, size = W)) +
+  scale_colour_gradient(low = "black", high = "purple") +
+  scale_size_continuous(range = c(0.5,2.5)) +
+  theme_classic() +
+  guides(colour = guide_legend(title = "Spatial Weight"),
+         size = guide_legend(title = "Spatial Weight")) +
+  ggtitle(paste0("Central cell: ", cellID)) + 
+  coord_fixed() +
+  NULL
+```
+
+**Question**
+
+1. How will the results change if the span is increased/decreased?
+
+```{r}
+## Make associated changes to the code to test out the question above.
+```
+
+We set the higher order function as the weighted mean function, and then 
+calculate the observed higher order test statistics. This may take around 10 
+seconds.
+
+```{r}
+scHOT_spatial <- scHOT_calculateGlobalHigherOrderFunction(
+    scHOT_spatial,
+    higherOrderFunction = weightedMean,
+    higherOrderFunctionType = "weighted")
+
+slot(scHOT_spatial, "scHOT_output")
+
+scHOT_spatial <- scHOT_calculateHigherOrderTestStatistics(
+    scHOT_spatial, na.rm = TRUE)
+```
+
+Now we can plot the overall mean versus the scHOT statistic to observe any 
+relationship. Labels can be interactively visualised using `ggplotly`. Some 
+genes may have different distributions so we turn to 
+permutation testing to assess statistical significance.
+
+```{r}
+g <- ggplot(as.data.frame(scHOT_spatial@scHOT_output), 
+           aes(x = globalHigherOrderFunction, y = higherOrderStatistic, label = gene_1)) + 
+  xlab("Mean across all cells") +
+  ylab("scHOT statistic for local weightedMean") +
+  geom_point()
+g
+ggplotly(g)
+```
+
+Set up the permutation testing schema. For the purposes of this workshop we set
+a low number of permutations over a low number of genes in the testing 
+scaffold, you may want to change this as you work through 
+the workshop yourself. The testing will take a few minutes to run, here with
+the parallel parameters that were set at the beginning of this document.
+
+```{r}
+scHOT_spatial <- scHOT_setPermutationScaffold(scHOT_spatial,
+                                              numberPermutations = 50,
+                                              numberScaffold = 30)
+
+scHOT_spatial <- scHOT_performPermutationTest(
+    scHOT_spatial,
+    verbose = TRUE,
+    parallel = FALSE)
+
+slot(scHOT_spatial, "scHOT_output")
+```
+
+After the permutation test we can estimate the P-values across all genes.
+
+```{r}
+scHOT_plotPermutationDistributions(scHOT_spatial)
+
+scHOT_spatial <- scHOT_estimatePvalues(scHOT_spatial,
+                                       nperm_estimate = 100,
+                                       maxDist = 0.1)
+slot(scHOT_spatial, "scHOT_output")
+```
+
+We can now examine the spatial expression of the 5 most significant genes, 
+both in our scHOT object and over our original spe object.
+
+```{r}
+output_sorted <- slot(scHOT_spatial, "scHOT_output")[order(slot(scHOT_spatial,
+                                                                "scHOT_output")$pvalEstimated),]
+topgenes <- rownames(output_sorted)[1:5]
+
+reducedDim(scHOT_spatial, "spatialCoords") <- reducedDim(spe, "spatialCoords")[colnames(scHOT_spatial),]
+
+for (topgene in topgenes) {
+  g_spe <- plotReducedDim(spe, "spatialCoords", colour_by = c(topgene), point_size = 1) +
+    coord_fixed()
+  
+  g_scHOT <- plotReducedDim(scHOT_spatial, "spatialCoords", colour_by = c(topgene), point_size = 1,
+                           by_exprs_values = "expression") +
+    coord_fixed()
+  
+  g_all <- g_scHOT + g_spe
+  print(g_all)
+}
+```
+
+Here we are noting the genes that are found to have the most statistically 
+significant spatial variation in their local mean expression. These genes point
+to specific patterns that govern the development of individual parts of the 
+gut tube.
+
+**Advanced/Extended Questions**
+
+1. How would you perform such testing over multiple distinct samples? 
+2. scHOT is developed with all higher order testing in mind, use the associated
+[vignette](http://www.bioconductor.org/packages/release/bioc/html/scHOT.html) 
+to get towards assessing changes in variation or correlation 
+structure in space.
+
+```{r}
+## try some code
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

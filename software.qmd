@@ -22,15 +22,116 @@ title: "Software"
 
 ```
 
+## MoleculeExperiment
 
-## SimpleSeg 
-<a href="http://www.bioconductor.org/packages/release/bioc/html/FuseSOM.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/simpleSeg/SimpleSeg_Hex_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+<a href="https://sydneybiox.github.io/MoleculeExperiment/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/MoleculeExperiment/MoleculeExperiment.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+MoleculeExperiment contains functions to create and work with
+    objects from the new MoleculeExperiment class. We introduce this class for
+    analysing molecule-based spatial transcriptomics data (e.g., Xenium by 10X,
+    Cosmx SMI by Nanostring, and Merscope by Vizgen). This allows researchers
+    to analyse spatial transcriptomics data at the molecule level, and to have
+    standardised data formats accross vendors.
+    
+
+
+## simpleSeg 
+<a href="http://www.bioconductor.org/packages/release/bioc/html/simpleSeg.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/simpleSeg/SimpleSeg_Hex_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
 simpleSeg provides a structured pipeline for segmentation of cellular tiff stacks and the normalization of features, priming cells for classification / clustering.
+
+
+## scMerge
+<a href="https://sydneybiox.github.io/scMerge/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scMerge/scMerge.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+Like all gene expression data, single-cell data suffers from 
+    batch effects and other unwanted variations that makes accurate biological interpretations difficult. 
+    The scMerge method leverages factor analysis, stably expressed genes (SEGs) and (pseudo-) replicates to 
+    remove unwanted variations and merge multiple single-cell data. 
+    This package contains all the necessary functions in the 
+    scMerge pipeline, including the identification of SEGs, replication-identification methods, and 
+    merging of single-cell data. 
+
+
+## FuseSOM
+<a href="http://www.bioconductor.org/packages/release/bioc/html/FuseSOM.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/FuseSOM/fuseSOM_ai_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+A correlation-based multiview self-organizing map for the characterization of cell types in highly multiplexed in situ imaging cytometry assays (`FuseSOM`) 
+    is a tool for unsupervised clustering. `FuseSOM` is robust and achieves high accuracy by 
+    combining a `Self Organizing Map` architecture and a `Multiview` integration of 
+    correlation based metrics. This allows FuseSOM to cluster highly multiplexed in situ imaging cytometry assays.
+
+
+## treeKor
+<a href="http://www.bioconductor.org/packages/release/bioc/html/treekoR.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/treekoR/treekoR.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+treekoR is a novel framework that aims to utilise the hierarchical 
+    nature of single cell cytometry data to find robust and interpretable associations 
+    between cell subsets and patient clinical end points. These associations are aimed to 
+    recapitulate the nested proportions prevalent in workflows inovlving manual gating, 
+    which are often overlooked in workflows using automatic
+    clustering to identify cell populations. We developed treekoR to:
+    Derive a hierarchical tree structure of cell clusters; quantify a cell types as 
+    a proportion relative to all cells in a sample (%total), and, as 
+    the proportion relative to a parent population (%parent); perform significance 
+    testing using the calculated proportions; and provide an 
+    interactive html visualisation to help highlight key results.
 
 ## scFeatures
 <a href="http://www.bioconductor.org/packages/release/bioc/html/scFeatures.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scFeatures/sticker_version2.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-scFeatures is a tool that generates multi-view representations of single-cell and spatial data through the construction of a total of 17 feature types.
+scFeatures constructs multi-view representations of single-cell
+             and spatial data. scFeatures is a tool that generates multi-view
+             representations of single-cell and spatial data through the
+             construction of a total of 17 feature types. These features can 
+             then be used for a variety of analyses using other software in
+             Biocondutor.
+             
+             
+## scHOT
+<a href="https://bioconductor.org/packages/release/bioc/html/scHOT.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scHOT/scHOT_hex.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+Single cell Higher Order Testing (scHOT) is an R package that facilitates testing changes in higher order structure of gene expression along either a developmental trajectory or across space. scHOT is general and modular in nature, can be run in multiple data contexts such as along a continuous trajectory, between discrete groups, and over spatial orientations; as well as accommodate any higher order measurement such as variability or correlation. scHOT meaningfully adds to first order effect testing, such as differential expression, and provides a framework for interrogating higher order interactions from single cell data.
 
 
+## spicyR
+<a href="https://ellispatrick.github.io/spicyR/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/spicyR/spicyR_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+spicyR provides a series of functions to aid in the spatial analysis of
+    any assay that 
+    can deeply phenotype individual cells and their spatial location.
+    
+
+## Statial
+<a href="https://sydneybiox.github.io/Statial/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/Statial/statial.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+Statial is a suite of functions for identifying changes in cell 
+    state. The functionality provided by Statial provides robust quantification 
+    of cell type localisation which are invariant to changes in tissue 
+    structure. In addition to this Statial uncovers changes in marker expression
+    associated with varying levels of localisation. These features can be used 
+    to explore how the structure and function of different cell types may be 
+    altered by the agents they are surrounded with.
+    
+    
+## lisaClust
+<a href="https://ellispatrick.github.io/lisaClust/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/lisaClust/lisaClust_sticker_ai_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+lisaClust provides a series of functions to identify and visualise 
+    regions of tissue where spatial associations between cell-types is similar.
+    This package can be used to provide a high-level summary of cell-type 
+    colocalization in multiplexed imaging data that has been segmented at a 
+    single-cell resolution.
+    
+    
+## ClassifyR
+<a href="https://sydneybiox.github.io/ClassifyR/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/ClassifyR/classifyR.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
+
+ClassifyR formalises a framework for classification and survival model evaluation
+             in R. There are four stages; Data transformation, feature selection, model training,
+             and prediction. The requirements of variable types and variable order are
+             fixed, but specialised variables for functions can also be provided.
+             The framework is wrapped in a driver loop that reproducibly carries out a
+             number of cross-validation schemes. Functions for differential mean, differential variability,
+             and differential distribution are included. Additional functions
+             may be developed by the user, by creating an interface to the framework.
