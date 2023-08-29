@@ -3,7 +3,10 @@ project:
 
 website:
   title: "Spatial omics analysis"
-  navbar:
+  navbar: 
+    logo: images/USydLogo.svg
+#    logo-href: "https://www.sydney.edu.au/science/our-research/research-centres/sydney-precision-data-science-centre.html"
+    background: "white"
     left:
       - href: index.qmd
         text: Home
@@ -14,10 +17,11 @@ website:
         text: Examples
       - href: gettingStarted.qmd
         text: Getting Started
+    
 
 format:
   html:
-    theme: cosmo
+    theme: [cosmo, styles.scss]
     css: styles.css
     toc: true
 
