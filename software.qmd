@@ -1,7 +1,7 @@
 ---
 title: "Software"
+bibliography: references.bib
 ---
-
 
 ```{=html}
 
@@ -19,119 +19,322 @@ title: "Software"
                 console.error('Error fetching content:', error);
             });
     </script>
+```
 
+
+```{r echo=FALSE}
+myCitation <- function (package = "base", lib.loc = NULL, auto = NULL) 
+{
+
+  if (!is.null(auto) && !is.logical(auto) && !anyNA(match(c("Package", 
+                                                            "Version", "Title"), names(meta <- as.list(auto)))) && 
+      !all(is.na(match(c("Authors@R", "Author"), names(meta))))) {
+    auto_was_meta <- TRUE
+    package <- meta$Package
+  }
+  else {
+    auto_was_meta <- FALSE
+    dir <- system.file(package = package, lib.loc = lib.loc)
+    if (dir == "") 
+      stop(packageNotFoundError(package, lib.loc, sys.call()))
+    meta <- packageDescription(pkg = package, lib.loc = dirname(dir))
+    citfile <- file.path(dir, "CITATION")
+    test <- file_test("-f", citfile)
+    if (!test) {
+      citfile <- file.path(dir, "inst", "CITATION")
+      test <- file_test("-f", citfile)
+    }
+    if (is.null(auto)) 
+      auto <- !test
+    if (!auto) {
+      return(myReadCitationFile(citfile, meta))
+    }
+  }
+  if ((!is.null(meta$Priority)) && (meta$Priority == "base")) {
+    cit <- myCitation("base", auto = FALSE)
+    attr(cit, "mheader")[1L] <- paste0("The ", sQuote(package), 
+                                       " package is part of R.  ", attr(cit, "mheader")[1L])
+    return(utils:::.citation(cit, package))
+  }
+  year <- sub("-.*", "", meta[["Date/Publication"]])
+  if (!length(year) && !is.null(date <- meta[["Date"]])) {
+    date <- trimws(as.vector(date))[1L]
+    date <- strptime(date, "%Y-%m-%d", tz = "GMT")
+    if (!is.na(date)) 
+      year <- format(date, "%Y")
+  }
+  if (!length(year)) {
+    date <- as.POSIXlt(sub(";.*", "", trimws(meta$Packaged)[1L]))
+    if (!is.na(date)) 
+      year <- format(date, "%Y")
+  }
+  if (!length(year)) {
+    warning(gettextf("could not determine year for %s from package DESCRIPTION file", 
+                     sQuote(package)), domain = NA)
+    year <- NA_character_
+  }
+  author <- meta$`Authors@R`
+  if (length(author)) {
+    aar <- utils:::.read_authors_at_R_field(author)
+    author <- Filter(function(e) {
+      !(is.null(e$given) && is.null(e$family)) && !is.na(match("aut", 
+                                                               e$role))
+    }, aar)
+    if (!length(author)) 
+      author <- Filter(function(e) {
+        !(is.null(e$given) && is.null(e$family)) && !is.na(match("cre", 
+                                                                 e$role))
+      }, aar)
+  }
+  if (length(author)) {
+    has_authors_at_R_field <- TRUE
+  }
+  else {
+    has_authors_at_R_field <- FALSE
+    author <- as.person(meta$Author)
+  }
+  z <- list(title = paste0(package, ": ", meta$Title), author = author, 
+            year = year, note = paste("R package version", meta$Version))
+  if (identical(meta$Repository, "CRAN")) 
+    z$url <- sprintf("https://CRAN.R-project.org/package=%s", 
+                     package)
+  if (identical(meta$Repository, "R-Forge")) {
+    z$url <- if (!is.null(rfp <- meta$"Repository/R-Forge/Project")) 
+      sprintf("https://R-Forge.R-project.org/projects/%s/", 
+              rfp)
+    else "https://R-Forge.R-project.org/"
+    if (!is.null(rfr <- meta$"Repository/R-Forge/Revision")) 
+      z$note <- paste(z$note, rfr, sep = "/r")
+  }
+  if ((is.null(meta$Repository) || identical(meta$Repository, 
+                                             "Bioconductor")) && !is.null(meta$git_url) && startsWith(meta$git_url, 
+                                                                                                      "https://git.bioconductor.org/packages")) {
+    z$url <- sprintf("https://bioconductor.org/packages/%s", 
+                     package)
+    z$doi <- sprintf("10.18129/B9.bioc.%s", package)
+  }
+  
+  meta$URL <- NULL
+  if (!length(z$url) && !is.null(url <- meta$URL)) {
+    if (grepl("[, ]", url)) 
+      z$note <- url
+    else z$url <- url
+  }
+  
+  header <- if (!auto_was_meta) {
+    gettextf("To cite package %s in publications use:", sQuote(package))
+  }
+  else NULL
+  footer <- if (!has_authors_at_R_field && !auto_was_meta) {
+    gettextf("ATTENTION: This myCitation information has been auto-generated from the package DESCRIPTION file and may need manual editing, see %s.", 
+             sQuote("help(\"myCitation\")"))
+  }
+  else NULL
+  author <- format(z$author, include = c("given", "family"))
+  if (length(author) > 1L) 
+    author <- paste(paste(head(author, -1L), collapse = ", "), 
+                    tail(author, 1L), sep = " and ")
+  z$url <- NULL
+  
+  rval <- bibentry(bibtype = "Manual", header = header, footer = footer, 
+                   other = z)
+  utils:::.citation(rval, package)
+}
+
+
+myReadCitationFile <- function (file, meta = NULL) 
+{
+  meta <- as.list(meta)
+  exprs <- tools:::.parse_CITATION_file(file, meta$Encoding)
+  if(length(exprs)>0)exprs[[length(exprs)]]$url <- NULL
+  if(length(exprs)>0)exprs[[length(exprs)]]$eprint <- NULL
+  #exprs[[2]] <- as.call(exprs[[2]])
+   rval <- list()
+  mheader <- NULL
+  mfooter <- NULL
+  envir <- new.env(hash = TRUE)
+  assign("meta", meta, envir = envir)
+  for (expr in exprs) {
+    x <- eval(expr, envir = envir)
+    if (inherits(x, "bibentry")) 
+      rval <- c(rval, list(x))
+  }
+  rlen <- length(rval)
+  if (rlen == 1L) 
+    rval <- rval[[1L]]
+  else if (rlen > 1L) 
+    rval <- do.call(c, rval)
+  utils:::.citation(rval, meta$Package)
+}
+
+
+```
+
+```{=html}
+<style>
+citation {
+  font-size: 9pt;
+}
+</style>
 ```
 
 ## MoleculeExperiment
 
 <a href="https://sydneybiox.github.io/MoleculeExperiment/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/MoleculeExperiment/MoleculeExperiment.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-MoleculeExperiment contains functions to create and work with
-    objects from the new MoleculeExperiment class. We introduce this class for
-    analysing molecule-based spatial transcriptomics data (e.g., Xenium by 10X,
-    Cosmx SMI by Nanostring, and Merscope by Vizgen). This allows researchers
-    to analyse spatial transcriptomics data at the molecule level, and to have
-    standardised data formats accross vendors.
-    
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("MoleculeExperiment", fields = "Description")))
+```
 
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("MoleculeExperiment"), style = "html")
+```
+</font> 
 
-## simpleSeg 
+## simpleSeg
+
 <a href="http://www.bioconductor.org/packages/release/bioc/html/simpleSeg.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/simpleSeg/SimpleSeg_Hex_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-simpleSeg provides a structured pipeline for segmentation of cellular tiff stacks and the normalization of features, priming cells for classification / clustering.
 
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("simpleSeg", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("simpleSeg"), style = "html")
+```
+</font>
 
 ## scMerge
+
 <a href="https://sydneybiox.github.io/scMerge/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scMerge/scMerge.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-Like all gene expression data, single-cell data suffers from 
-    batch effects and other unwanted variations that makes accurate biological interpretations difficult. 
-    The scMerge method leverages factor analysis, stably expressed genes (SEGs) and (pseudo-) replicates to 
-    remove unwanted variations and merge multiple single-cell data. 
-    This package contains all the necessary functions in the 
-    scMerge pipeline, including the identification of SEGs, replication-identification methods, and 
-    merging of single-cell data. 
 
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("scMerge", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("scMerge"), style = "html")
+```
+</font> 
 
 ## FuseSOM
+
 <a href="http://www.bioconductor.org/packages/release/bioc/html/FuseSOM.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/FuseSOM/fuseSOM_ai_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-A correlation-based multiview self-organizing map for the characterization of cell types in highly multiplexed in situ imaging cytometry assays (`FuseSOM`) 
-    is a tool for unsupervised clustering. `FuseSOM` is robust and achieves high accuracy by 
-    combining a `Self Organizing Map` architecture and a `Multiview` integration of 
-    correlation based metrics. This allows FuseSOM to cluster highly multiplexed in situ imaging cytometry assays.
 
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("FuseSOM", fields = "Description")))
+```
 
-## treeKor
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("FuseSOM"), style = "html")
+```
+</font> 
+
+## treekoR
+
 <a href="http://www.bioconductor.org/packages/release/bioc/html/treekoR.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/treekoR/treekoR.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-treekoR is a novel framework that aims to utilise the hierarchical 
-    nature of single cell cytometry data to find robust and interpretable associations 
-    between cell subsets and patient clinical end points. These associations are aimed to 
-    recapitulate the nested proportions prevalent in workflows inovlving manual gating, 
-    which are often overlooked in workflows using automatic
-    clustering to identify cell populations. We developed treekoR to:
-    Derive a hierarchical tree structure of cell clusters; quantify a cell types as 
-    a proportion relative to all cells in a sample (%total), and, as 
-    the proportion relative to a parent population (%parent); perform significance 
-    testing using the calculated proportions; and provide an 
-    interactive html visualisation to help highlight key results.
+
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("treekoR", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("treekoR"), style = "html", url = "")
+```
+</font> 
 
 ## scFeatures
+
 <a href="http://www.bioconductor.org/packages/release/bioc/html/scFeatures.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scFeatures/sticker_version2.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-scFeatures constructs multi-view representations of single-cell
-             and spatial data. scFeatures is a tool that generates multi-view
-             representations of single-cell and spatial data through the
-             construction of a total of 17 feature types. These features can 
-             then be used for a variety of analyses using other software in
-             Biocondutor.
-             
-             
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("scFeatures", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("scFeatures"), style = "html")
+```
+</font> 
+
 ## scHOT
+
 <a href="https://bioconductor.org/packages/release/bioc/html/scHOT.html"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/scHOT/scHOT_hex.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-Single cell Higher Order Testing (scHOT) is an R package that facilitates testing changes in higher order structure of gene expression along either a developmental trajectory or across space. scHOT is general and modular in nature, can be run in multiple data contexts such as along a continuous trajectory, between discrete groups, and over spatial orientations; as well as accommodate any higher order measurement such as variability or correlation. scHOT meaningfully adds to first order effect testing, such as differential expression, and provides a framework for interrogating higher order interactions from single cell data.
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("scHOT", fields = "Description")))
+```
 
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("scHOT"), style = "html")
+```
+</font> 
 
 ## spicyR
+
 <a href="https://ellispatrick.github.io/spicyR/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/spicyR/spicyR_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-spicyR provides a series of functions to aid in the spatial analysis of
-    any assay that 
-    can deeply phenotype individual cells and their spatial location.
-    
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("spicyR", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("spicyR"), style = "html")
+```
+</font> 
 
 ## Statial
+
 <a href="https://sydneybiox.github.io/Statial/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/Statial/statial.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-Statial is a suite of functions for identifying changes in cell 
-    state. The functionality provided by Statial provides robust quantification 
-    of cell type localisation which are invariant to changes in tissue 
-    structure. In addition to this Statial uncovers changes in marker expression
-    associated with varying levels of localisation. These features can be used 
-    to explore how the structure and function of different cell types may be 
-    altered by the agents they are surrounded with.
-    
-    
+
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("Statial", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("Statial"), style = "html")
+```
+</font> 
+
 ## lisaClust
+
 <a href="https://ellispatrick.github.io/lisaClust/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/lisaClust/lisaClust_sticker_ai_standard.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-lisaClust provides a series of functions to identify and visualise 
-    regions of tissue where spatial associations between cell-types is similar.
-    This package can be used to provide a high-level summary of cell-type 
-    colocalization in multiplexed imaging data that has been segmented at a 
-    single-cell resolution.
-    
-    
+
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("lisaClust", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("lisaClust"), style = "html")
+```
+</font> 
+
 ## ClassifyR
+
 <a href="https://sydneybiox.github.io/ClassifyR/"><img src="https://github.com/SydneyBioX/SydneyBioXStickers/blob/main/ClassifyR/classifyR.png?raw=true" align="right" style="height: 100px; border: 0px"/></a>
 
-ClassifyR formalises a framework for classification and survival model evaluation
-             in R. There are four stages; Data transformation, feature selection, model training,
-             and prediction. The requirements of variable types and variable order are
-             fixed, but specialised variables for functions can also be provided.
-             The framework is wrapped in a driver loop that reproducibly carries out a
-             number of cross-validation schemes. Functions for differential mean, differential variability,
-             and differential distribution are included. Additional functions
-             may be developed by the user, by creating an interface to the framework.
+
+```{r, results = 'asis', echo = FALSE}
+cat(gsub("\n", " ", utils::packageDescription("ClassifyR", fields = "Description")))
+```
+
+<font size=-1> 
+```{r, results = 'asis', echo = FALSE}
+print(myCitation("ClassifyR"), style = "html")
+```
+</font> 
