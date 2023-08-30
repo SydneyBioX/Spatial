@@ -84,11 +84,11 @@
     "text": "If you are new to spatial omics data and would like to jump into some analysis, this page is a great place to start."
   },
   {
-    "objectID": "gettingStarted.html#what-technologies-is-our-software-applicable-to.",
-    "href": "gettingStarted.html#what-technologies-is-our-software-applicable-to.",
+    "objectID": "gettingStarted.html#what-technologies-is-our-software-applicable-to",
+    "href": "gettingStarted.html#what-technologies-is-our-software-applicable-to",
     "title": "Getting Started",
-    "section": "What technologies is our software applicable to.",
-    "text": "What technologies is our software applicable to.\nPlease check out our scdney suite of packages for analysing many different types of single cell resolution assays. This website focuses specifically on single cell resolution assays that have spatial context. That is, each of the cells has an x-y coordinate. Technologies that generate this type of data include Imaging Mass Cytometry, MIBI-TOF, Xenium, CosMx, and MERFISH."
+    "section": "What technologies is our software applicable to?",
+    "text": "What technologies is our software applicable to?\nPlease check out our scdney suite of packages for analysing many different types of single cell resolution assays. This website focuses specifically on single cell resolution assays that have spatial context. That is, each of the cells has an x-y coordinate. Technologies that generate this type of data include Imaging Mass Cytometry, MIBI-TOF, Xenium, CosMx, and MERFISH."
   },
   {
     "objectID": "gettingStarted.html#using-our-packages",
